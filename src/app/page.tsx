@@ -10,50 +10,52 @@ export default function Home() {
     <>
       <SiteHeader active="home" />
 
-      {/* ========== HERO ========== */}
-      <section className="home-hero">
+      {/* ========== COVER HERO — magazine-style ========== */}
+      <section className="cover-hero">
         <div className="wrap">
-          <div className="hero-grid">
-            <div className="hero-text">
-              <span className="eyebrow">Est. 1999 · Boulder, Colorado · Worldwide</span>
-              <h1 className="display">
-                A quiet <em>return</em>
-                <br />
-                to the deeper
-                <br />
-                intelligence
-                <br />
-                within.
-              </h1>
-              <p className="sub">
-                Twenty-five years of intuitive guidance, evolutionary astrology, and deep energetic
-                healing — for the humans and animals navigating life&apos;s most layered passages.
-              </p>
-              <div className="badges">
-                <Link href="/contact" className="btn">
-                  Book a Session <span className="arrow">→</span>
-                </Link>
-                <Link href="/quanta-freedom-healing" className="btn ghost">
-                  Explore the Work
-                </Link>
-              </div>
+          <div className="masthead">
+            <span className="left">Issue No. III</span>
+            <span className="center">Healer · Intuitive · Astrologer</span>
+            <span className="right">Boulder &amp; worldwide</span>
+          </div>
+
+          <div className="cover-stage">
+            <div className="issue-line">
+              <span className="rule" aria-hidden />
+              <span>Cover Story · Spring 2026</span>
+              <span className="rule" aria-hidden />
             </div>
-            <div className="hero-image">
-              <div className="frame">
-                <Image
-                  src="/images/rhianna-beach-halo.jpg"
-                  alt="Rhianna walking through ocean surf at sunset, with sunburst halo"
-                  fill
-                  priority
-                  sizes="(max-width: 880px) 92vw, 50vw"
-                />
-              </div>
-              <div className="floater">
-                &ldquo;Her ability to pinpoint the core issue made the work incredibly fast and
-                effective.&rdquo;
-                <span>— Teresa, client since 2022</span>
-              </div>
+
+            <div className="cover-image">
+              <Image
+                src="/images/rhianna-beach-halo.jpg"
+                alt="Rhianna walking through ocean surf at sunset, with sunburst halo"
+                fill
+                priority
+                sizes="(max-width: 720px) 88vw, 680px"
+              />
             </div>
+
+            <h1 className="cover-headline">
+              A quiet <em>return</em> to the deeper intelligence within.
+            </h1>
+
+            <span className="cover-eyebrow">Twenty-five years of listening</span>
+
+            <div className="cover-cta">
+              <Link href="/contact" className="btn">
+                Book a Session <span className="arrow">→</span>
+              </Link>
+              <Link href="/quanta-freedom-healing" className="btn ghost">
+                Explore the Work
+              </Link>
+            </div>
+
+            <p className="cover-credit">
+              &ldquo;Her ability to pinpoint the core issue made the work incredibly fast and
+              effective.&rdquo;
+              <cite>— Teresa · client since 2022</cite>
+            </p>
           </div>
         </div>
       </section>
