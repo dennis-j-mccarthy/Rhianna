@@ -270,11 +270,11 @@ export default function Home() {
       </section>
 
       {/* ========== THRESHOLD TEASER ========== */}
-      <section className="threshold-band">
+      <section className="notebook-band">
         <div className="wrap">
           <div className="services-head">
             <div>
-              <span className="eyebrow">Threshold · The Journal</span>
+              <span className="eyebrow">Notebook · The Journal</span>
               <h2>Notes from the listening.</h2>
             </div>
             <p className="kicker" style={{ fontSize: 18 }}>
@@ -283,37 +283,37 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="threshold-grid">
-            <article className="threshold-card">
+          <div className="notebook-grid">
+            <article className="notebook-card">
               <span className="date">May 2026 · Astrology</span>
               <h4>The Saturn–Neptune passage and the dissolving of an old self.</h4>
               <p>
                 On the rare conjunction we are moving through, what it asks us to surrender, and
                 the soft scaffolding it offers in return.
               </p>
-              <Link href="/threshold">Read essay →</Link>
+              <Link href="/notebook">Read essay →</Link>
             </article>
-            <article className="threshold-card">
+            <article className="notebook-card">
               <span className="date">April 2026 · Animal</span>
               <h4>What our dogs carry for us — and how to gently give it back.</h4>
               <p>
                 Animals often hold our unspoken grief and ungrounded anxieties. A practice for
                 noticing what is yours, and what theirs.
               </p>
-              <Link href="/threshold">Read essay →</Link>
+              <Link href="/notebook">Read essay →</Link>
             </article>
-            <article className="threshold-card">
+            <article className="notebook-card">
               <span className="date">March 2026 · Healing</span>
               <h4>Why the body refuses to budge — until something deeper is heard.</h4>
               <p>
                 Stuck patterns are not stubbornness. They are intelligence. A look at how Quanta
                 Freedom Healing speaks the body&apos;s native language.
               </p>
-              <Link href="/threshold">Read essay →</Link>
+              <Link href="/notebook">Read essay →</Link>
             </article>
           </div>
           <div style={{ textAlign: "center", marginTop: 56 }}>
-            <Link href="/threshold" className="btn ghost">
+            <Link href="/notebook" className="btn ghost">
               All Essays
             </Link>
           </div>

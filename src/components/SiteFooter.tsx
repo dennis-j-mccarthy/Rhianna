@@ -30,13 +30,13 @@ export default function SiteFooter() {
           <h4>Read &amp; Connect</h4>
           <ul>
             <li>
-              <Link href="/threshold">Threshold (Journal)</Link>
+              <Link href="/notebook">Notebook (Journal)</Link>
             </li>
             <li>
               <Link href="/contact">Contact &amp; Booking</Link>
             </li>
             <li>
-              <Link href="/threshold">Newsletter</Link>
+              <Link href="/notebook">Newsletter</Link>
             </li>
           </ul>
         </div>

@@ -7,7 +7,7 @@ import FilterRow from "@/components/FilterRow";
 import NewsletterForm from "@/components/NewsletterForm";
 
 export const metadata = {
-  title: "Threshold — Notes from the Listening · Rhianna Gray",
+  title: "Notebook — Notes from the Listening · Rhianna Gray",
   description:
     "Slow writing on astrology cycles, animal wisdom, and the inner mechanics of healing. Published when there is something worth saying.",
 };
@@ -108,16 +108,16 @@ const essays: Essay[] = [
   },
 ];
 
-export default function ThresholdPage() {
+export default function NotebookPage() {
   return (
     <>
-      <SiteHeader active="threshold" />
+      <SiteHeader active="notebook" />
 
-      <section className="thresh-hero">
+      <section className="notebook-hero">
         <div className="wrap-narrow">
           <span className="eyebrow">The Journal</span>
           <h1>
-            <em>Threshold</em>
+            <em>Notebook</em>
           </h1>
           <p className="tagline">
             Notes from the listening. Slow writing on astrology cycles, animal wisdom, and the
@@ -160,7 +160,7 @@ export default function ThresholdPage() {
               is asked to surrender. Not give up. Surrender. Here is the difference, and the soft
               scaffolding the cycle offers in return.
             </p>
-            <Link href="/threshold" className="btn">
+            <Link href="/notebook" className="btn">
               Read the essay <span className="arrow">→</span>
             </Link>
             <div className="author">
@@ -216,7 +216,7 @@ export default function ThresholdPage() {
                 </div>
                 <h3>{e.title}</h3>
                 <p>{e.excerpt}</p>
-                <Link href="/threshold" className="read">
+                <Link href="/notebook" className="read">
                   Read essay
                 </Link>
               </article>
@@ -224,7 +224,7 @@ export default function ThresholdPage() {
           </div>
 
           <div style={{ textAlign: "center", marginTop: 72 }}>
-            <Link href="/threshold" className="btn ghost">
+            <Link href="/notebook" className="btn ghost">
               Load more essays
             </Link>
           </div>

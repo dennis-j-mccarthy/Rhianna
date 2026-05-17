@@ -742,34 +742,34 @@ ul.bare li::before {
   color: var(--ink); font-style: normal;
 }
 
-.threshold-band { padding-block: clamp(80px, 10vw, 130px); }
-.threshold-grid {
+.notebook-band { padding-block: clamp(80px, 10vw, 130px); }
+.notebook-grid {
   display: grid; grid-template-columns: 1fr 1fr 1fr;
   gap: 32px; margin-top: 56px;
 }
-.threshold-card {
+.notebook-card {
   display: flex; flex-direction: column;
   border-top: 1px solid var(--ink);
   padding-top: 24px;
 }
-.threshold-card .date {
+.notebook-card .date {
   font-family: var(--sans); font-size: 11px;
   letter-spacing: .25em; text-transform: uppercase;
   color: var(--muted); margin-bottom: 16px;
 }
-.threshold-card h4 {
+.notebook-card h4 {
   font-family: var(--serif); font-weight: 400;
   font-size: 26px; line-height: 1.2;
   margin-bottom: 12px;
 }
-.threshold-card p { color: var(--ink-soft); font-size: 15px; margin-bottom: 20px; }
-.threshold-card a {
+.notebook-card p { color: var(--ink-soft); font-size: 15px; margin-bottom: 20px; }
+.notebook-card a {
   margin-top: auto;
   font-family: var(--sans); font-size: 11px;
   letter-spacing: .25em; text-transform: uppercase;
   border: none;
 }
-@media (max-width: 880px) { .threshold-grid { grid-template-columns: 1fr; } }
+@media (max-width: 880px) { .notebook-grid { grid-template-columns: 1fr; } }
 
 .closing {
   padding-block: clamp(80px, 10vw, 140px);
@@ -1522,25 +1522,25 @@ ul.bare li::before {
 .learn-more p { max-width: 50ch; margin: 0 auto 24px; }
 
 /* ---------- THRESHOLD ---------- */
-.thresh-hero {
+.notebook-hero {
   padding: 24px 0 clamp(48px, 6vw, 80px);
   text-align: center;
 }
-.thresh-hero h1 {
+.notebook-hero h1 {
   font-size: clamp(60px, 9.5vw, 130px);
   font-weight: 300;
   letter-spacing: -.015em;
   margin: 24px 0 12px;
   line-height: 1;
 }
-.thresh-hero h1 em { font-style: italic; color: var(--violet-deep); }
-.thresh-hero .tagline {
+.notebook-hero h1 em { font-style: italic; color: var(--violet-deep); }
+.notebook-hero .tagline {
   font-family: var(--serif); font-style: italic;
   font-size: clamp(22px, 2.4vw, 30px);
   color: var(--ink-soft);
   max-width: 32ch; margin: 0 auto 32px;
 }
-.thresh-hero .meta {
+.notebook-hero .meta {
   display: flex; gap: 36px; justify-content: center; flex-wrap: wrap;
   font-family: var(--sans); font-size: 11px;
   letter-spacing: .25em; text-transform: uppercase;
@@ -1549,7 +1549,7 @@ ul.bare li::before {
   border-top: 1px solid rgba(31,42,46,.15);
   max-width: 600px; margin: 0 auto;
 }
-.thresh-hero .meta span::before { content: "✦  "; color: var(--gold); }
+.notebook-hero .meta span::before { content: "✦  "; color: var(--gold); }
 
 .filter-row {
   display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;

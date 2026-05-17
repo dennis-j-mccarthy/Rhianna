@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Logo from "./Logo";
 
-type NavKey = "home" | "astrology" | "animal" | "healing" | "threshold" | "contact";
+type NavKey = "home" | "astrology" | "animal" | "healing" | "notebook" | "contact";
 
 const left: { key: NavKey; href: string; label: string }[] = [
   { key: "home", href: "/", label: "Home" },
@@ -11,7 +11,7 @@ const left: { key: NavKey; href: string; label: string }[] = [
 
 const right: { key: NavKey; href: string; label: string }[] = [
   { key: "healing", href: "/quanta-freedom-healing", label: "Healing" },
-  { key: "threshold", href: "/threshold", label: "Threshold" },
+  { key: "notebook", href: "/notebook", label: "Notebook" },
   { key: "contact", href: "/contact", label: "Contact" },
 ];
 
