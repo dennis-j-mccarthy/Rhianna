@@ -34,7 +34,7 @@
   --shadow-soft:  0 1px 2px rgba(31,42,46,.04), 0 8px 30px rgba(31,42,46,.06);
 
   /* Font CSS vars are populated by next/font in layout.tsx */
-  --serif: var(--font-serif), "Cormorant Garamond", Georgia, serif;
+  --serif: var(--font-serif), "Fraunces", "Spectral", Georgia, serif;
   --sans:  var(--font-sans), "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
 }
 
@@ -79,16 +79,17 @@ a:hover { color: var(--clay-deep); border-color: var(--clay-deep); }
 /* -------- type ----------------------------------------------------- */
 h1, h2, h3, h4 {
   font-family: var(--serif);
-  font-weight: 400;
+  font-weight: 500;
   color: var(--ink);
   margin: 0 0 .6em;
-  letter-spacing: .005em;
+  letter-spacing: -.01em;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
 }
 
-h1 { font-size: clamp(48px, 7vw, 92px); font-weight: 300; line-height: 1.05; }
-h2 { font-size: clamp(34px, 4.5vw, 56px); font-weight: 300; line-height: 1.1; }
-h3 { font-size: clamp(24px, 2.6vw, 32px); line-height: 1.25; }
-h4 { font-size: 20px; line-height: 1.3; }
+h1 { font-size: clamp(44px, 6.4vw, 82px); font-weight: 500; line-height: 1.02; letter-spacing: -.02em; }
+h2 { font-size: clamp(32px, 4.2vw, 52px); font-weight: 500; line-height: 1.08; letter-spacing: -.015em; }
+h3 { font-size: clamp(22px, 2.4vw, 30px); line-height: 1.2; font-weight: 500; letter-spacing: -.01em; }
+h4 { font-size: 20px; line-height: 1.3; font-weight: 500; }
 
 .italic, em { font-style: italic; }
 
@@ -97,7 +98,7 @@ p.lead {
   font-family: var(--serif);
   font-size: clamp(22px, 2.2vw, 28px);
   font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.45;
   color: var(--ink);
   max-width: 28ch;
@@ -190,10 +191,11 @@ ul.bare li::before {
 }
 .logo-mark {
   font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(28px, 3.4vw, 38px);
+  font-weight: 500;
+  font-size: clamp(26px, 3vw, 34px);
   line-height: 1;
-  letter-spacing: .02em;
+  letter-spacing: -.015em;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
   display: flex; align-items: center; gap: .55em;
 }
 .logo-mark .crescent {
@@ -413,6 +415,7 @@ ul.bare li::before {
 .pillquote {
   font-family: var(--serif);
   font-style: italic;
+  font-weight: 400;
   font-size: clamp(22px, 2.4vw, 30px);
   line-height: 1.4;
   color: var(--ink);
@@ -546,17 +549,18 @@ ul.bare li::before {
   width: clamp(48px, 8vw, 120px);
 }
 
-/* Cover headline placed BELOW the image, smaller, italic — magazine subtitle style */
+/* Cover headline placed BELOW the image, magazine subtitle style */
 .cover-hero .cover-headline {
   margin: clamp(40px, 5vw, 72px) auto 0;
-  max-width: 26ch;
+  max-width: 22ch;
   font-family: var(--serif);
-  font-weight: 300;
-  font-style: italic;
-  font-size: clamp(30px, 4vw, 52px);
-  line-height: 1.12;
-  letter-spacing: -.003em;
+  font-weight: 500;
+  font-style: normal;
+  font-size: clamp(32px, 4.2vw, 56px);
+  line-height: 1.06;
+  letter-spacing: -.025em;
   color: var(--ink);
+  font-variation-settings: "opsz" 144, "SOFT" 30;
 }
 .cover-hero .cover-headline em {
   font-style: italic;
@@ -668,10 +672,11 @@ ul.bare li::before {
   letter-spacing: .1em;
 }
 .service-row h3 {
-  font-size: clamp(36px, 4vw, 52px);
-  font-weight: 300;
+  font-size: clamp(32px, 3.6vw, 46px);
+  font-weight: 500;
   margin: 8px 0 18px;
-  line-height: 1.05;
+  line-height: 1.04;
+  letter-spacing: -.02em;
 }
 .service-row .service-copy { max-width: 48ch; }
 .service-row .service-media {
@@ -726,8 +731,8 @@ ul.bare li::before {
   color: var(--mint-deep); margin-bottom: 12px;
 }
 .testimonial-card blockquote {
-  font-family: var(--serif); font-style: italic; font-weight: 300;
-  font-size: clamp(22px, 2.4vw, 30px); line-height: 1.5;
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: clamp(22px, 2.4vw, 30px); line-height: 1.45;
   color: var(--ink); margin: 0 0 28px;
 }
 .testimonial-card cite {
@@ -959,9 +964,10 @@ ul.bare li::before {
   border-right: 1px solid rgba(31,42,46,.15);
 }
 .duality-grid h3 {
-  font-family: var(--serif); font-weight: 300;
-  font-size: clamp(28px, 3vw, 38px);
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(26px, 2.8vw, 34px);
   margin-bottom: .4em;
+  letter-spacing: -.015em;
 }
 .duality-grid .smalltag {
   font-family: var(--sans); font-size: 11px;
@@ -1335,10 +1341,11 @@ ul.bare li::before {
 }
 .whatif .wrap-narrow { position: relative; text-align: center; }
 .whatif .display {
-  font-family: var(--serif); font-weight: 300;
-  font-size: clamp(40px, 5.5vw, 72px);
-  line-height: 1.1; color: var(--cream);
+  font-family: var(--serif); font-weight: 500;
+  font-size: clamp(36px, 5vw, 62px);
+  line-height: 1.05; color: var(--cream);
   margin: 0 0 .5em;
+  letter-spacing: -.025em;
 }
 .whatif .display em { font-style: italic; color: var(--clay); }
 .whatif p { color: rgba(245,239,228,.78); max-width: 60ch; margin: 0 auto 1.2em; font-size: 18px; }
@@ -1497,8 +1504,8 @@ ul.bare li::before {
   color: var(--clay-pale);
 }
 .testimonial blockquote {
-  font-family: var(--serif); font-weight: 300;
-  font-size: 19px; line-height: 1.55;
+  font-family: var(--serif); font-weight: 400;
+  font-size: 19px; line-height: 1.5;
   color: var(--ink);
   margin: 0 0 24px;
   font-style: italic;
@@ -1519,11 +1526,11 @@ ul.bare li::before {
   text-align: center;
 }
 .thresh-hero h1 {
-  font-size: clamp(60px, 10vw, 140px);
-  font-weight: 300;
-  letter-spacing: -.01em;
+  font-size: clamp(56px, 9vw, 120px);
+  font-weight: 500;
+  letter-spacing: -.04em;
   margin: 24px 0 12px;
-  line-height: 1;
+  line-height: .98;
 }
 .thresh-hero h1 em { font-style: italic; color: var(--violet-deep); }
 .thresh-hero .tagline {
@@ -1586,14 +1593,15 @@ ul.bare li::before {
 }
 .featured .meta .topic { color: var(--violet-deep); }
 .featured h2 {
-  font-size: clamp(38px, 5vw, 64px);
-  font-weight: 300;
-  line-height: 1.05;
+  font-size: clamp(34px, 4.5vw, 56px);
+  font-weight: 500;
+  line-height: 1.02;
   margin-bottom: .4em;
+  letter-spacing: -.025em;
 }
 .featured .excerpt {
   font-family: var(--serif); font-size: 20px;
-  font-weight: 300; line-height: 1.55;
+  font-weight: 400; line-height: 1.5;
   color: var(--ink-soft);
   max-width: 50ch;
   margin-bottom: 28px;
@@ -1727,10 +1735,11 @@ ul.bare li::before {
   text-align: center;
 }
 .contact-hero h1 {
-  font-size: clamp(56px, 8vw, 110px);
-  font-weight: 300;
+  font-size: clamp(52px, 7.5vw, 96px);
+  font-weight: 500;
   margin: 24px 0 16px;
-  line-height: 1;
+  line-height: .98;
+  letter-spacing: -.035em;
 }
 .contact-hero h1 em { font-style: italic; color: var(--clay-deep); }
 .contact-hero .tagline {
