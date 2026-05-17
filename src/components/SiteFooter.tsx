@@ -6,7 +6,7 @@ export default function SiteFooter() {
     <footer className="site-footer">
       <div className="wrap">
         <div>
-          <Logo align="start" />
+          <Logo align="start" showTag />
           <p style={{ marginTop: 24, color: "rgba(245,239,228,.6)", maxWidth: "32ch" }}>
             Twenty-five years of intuitive guidance, evolutionary astrology, and Quanta Freedom
             Healing™. Boulder, Colorado &amp; worldwide.

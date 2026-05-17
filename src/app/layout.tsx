@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Spectral, Inter } from "next/font/google";
 import "./globals.css";
 
-const serif = Fraunces({
+const serif = Spectral({
   variable: "--font-serif",
   subsets: ["latin"],
+  weight: ["200", "300", "400", "500"],
   style: ["normal", "italic"],
-  axes: ["opsz", "SOFT"],
   display: "swap",
 });
 

@@ -2,9 +2,10 @@ import Link from "next/link";
 
 type Props = {
   align?: "center" | "start";
+  showTag?: boolean;
 };
 
-export default function Logo({ align = "center" }: Props) {
+export default function Logo({ align = "center", showTag = false }: Props) {
   return (
     <Link
       href="/"
@@ -15,7 +16,7 @@ export default function Logo({ align = "center" }: Props) {
         <span className="crescent" />
         Rhianna Gray
       </span>
-      <span className="logo-tag">Healer · Intuitive · Astrologer</span>
+      {showTag && <span className="logo-tag">Healer · Intuitive · Astrologer</span>}
     </Link>
   );
 }

@@ -13,19 +13,7 @@ export default function Home() {
       {/* ========== COVER HERO — magazine-style ========== */}
       <section className="cover-hero">
         <div className="wrap">
-          <div className="masthead">
-            <span className="left">Issue No. III</span>
-            <span className="center">Healer · Intuitive · Astrologer</span>
-            <span className="right">Boulder &amp; worldwide</span>
-          </div>
-
           <div className="cover-stage">
-            <div className="issue-line">
-              <span className="rule" aria-hidden />
-              <span>Cover Story · Spring 2026</span>
-              <span className="rule" aria-hidden />
-            </div>
-
             <div className="cover-image">
               <Image
                 src="/images/rhianna-beach-halo.jpg"
