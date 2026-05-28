@@ -131,6 +131,11 @@ const seeds: Seed[] = [
 ];
 
 async function main() {
+  const existing = await db.article.count();
+  if (existing > 0) {
+    console.log(`Seed skipped — ${existing} articles already present.`);
+    return;
+  }
   for (const seed of seeds) {
     const slug = slugify(seed.title);
     const tagSlug = slugify(seed.tag);
