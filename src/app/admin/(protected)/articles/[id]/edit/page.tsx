@@ -8,10 +8,13 @@ export const maxDuration = 60;
 
 export default async function EditArticlePage({
   params,
+  searchParams,
 }: {
   params: Promise<{ id: string }>;
+  searchParams: Promise<{ focus?: string }>;
 }) {
   const { id } = await params;
+  const { focus } = await searchParams;
   const article = await db.article.findUnique({
     where: { id },
     include: { tags: true },
@@ -29,6 +32,7 @@ export default async function EditArticlePage({
       <ArticleForm
         action={updateArticle}
         submitLabel="Save changes"
+        focusBody={focus === "body"}
         article={{
           id: article.id,
           title: article.title,

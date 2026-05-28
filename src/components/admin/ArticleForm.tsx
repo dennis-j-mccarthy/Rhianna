@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 import Link from "next/link";
 import { upload } from "@vercel/blob/client";
@@ -33,10 +33,12 @@ export default function ArticleForm({
   action,
   article,
   submitLabel,
+  focusBody = false,
 }: {
   action: (formData: FormData) => void | Promise<void>;
   article?: ArticleFormData | null;
   submitLabel: string;
+  focusBody?: boolean;
 }) {
   const [title, setTitle] = useState(article?.title ?? "");
   const [slug, setSlug] = useState(article?.slug ?? "");
@@ -52,6 +54,13 @@ export default function ArticleForm({
   const [aiError, setAiError] = useState<string | null>(null);
 
   const editorRef = useRef<RichTextEditorHandle>(null);
+  const bodyRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (focusBody) {
+      bodyRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [focusBody]);
 
   async function handleCoverFile(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -216,7 +225,7 @@ export default function ArticleForm({
         <p className="admin-hint">Comma-separated. New tags are created automatically.</p>
       </div>
 
-      <div className="field">
+      <div className="field" ref={bodyRef}>
         <label>Body</label>
         <RichTextEditor ref={editorRef} name="contentHtml" defaultValue={article?.contentHtml ?? ""} />
       </div>

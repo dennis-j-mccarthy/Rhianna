@@ -180,5 +180,5 @@ Rules:
   });
 
   revalidatePath("/admin");
-  redirect(`/admin/articles/${article.id}/edit`);
+  redirect(`/admin/articles/${article.id}/edit?focus=body`);
 }

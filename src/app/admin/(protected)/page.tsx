@@ -19,13 +19,12 @@ export default async function AdminArticlesPage() {
     <section className="admin-page">
       <div className="admin-page-head">
         <h1>Articles</h1>
-        <Link href="/admin/articles/new" className="btn">
-          New article
-        </Link>
-      </div>
-
-      <div className="admin-quick-create-row">
-        <QuickCreate />
+        <div className="admin-head-actions">
+          <QuickCreate />
+          <Link href="/admin/articles/new" className="btn">
+            New article
+          </Link>
+        </div>
       </div>
 
       {articles.length === 0 ? (
