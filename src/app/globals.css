@@ -2287,16 +2287,17 @@ a.tag:hover { background: var(--ink); color: var(--cream); border-color: var(--i
 :root[data-theme="light"] body {
   background: linear-gradient(
     115deg,
-    var(--mint-pale),
-    var(--mauve-pale),
-    var(--clay-pale),
-    #f5e6c4,
-    var(--violet-pale),
-    #cfe7e0,
-    var(--mint-pale)
+    #8fcfc4,
+    #c79ad6,
+    #e89f72,
+    #ecc659,
+    #9ad0b0,
+    #b58ad0,
+    #e0936a,
+    #8fcfc4
   );
-  background-size: 320% 320%;
-  animation: rg-shift 22s ease-in-out infinite;
+  background-size: 420% 420%;
+  animation: rg-shift 11s linear infinite;
 }
 
 /* Colorful gradient dark — deep plum/charcoal with brand glow.
@@ -2313,16 +2314,16 @@ a.tag:hover { background: var(--ink); color: var(--cream); border-color: var(--i
 :root[data-theme="dark"] body {
   background: linear-gradient(
     115deg,
-    #1a1226,
-    #321640,
-    #13202e,
-    #2c1a24,
-    #161a36,
-    #221033,
-    #1a1226
+    #4a1566,
+    #0d4a5a,
+    #6e1a52,
+    #1a2a7e,
+    #0a4038,
+    #5a1a6e,
+    #4a1566
   );
-  background-size: 320% 320%;
-  animation: rg-shift 26s ease-in-out infinite;
+  background-size: 420% 420%;
+  animation: rg-shift 13s linear infinite;
   color: var(--ink-soft);
 }
 
@@ -2383,5 +2384,5 @@ a.tag:hover { background: var(--ink); color: var(--cream); border-color: var(--i
   border: 1px solid rgba(31,42,46,.25);
 }
 .theme-swatch.plain { background: var(--cream); }
-.theme-swatch.light { background: linear-gradient(120deg, var(--mauve-pale), var(--clay-pale), #f5e6c4, var(--violet-pale), var(--mint-pale)); }
-.theme-swatch.dark { background: linear-gradient(120deg, #321640, #13202e, #2c1a24, #161a36); }
+.theme-swatch.light { background: linear-gradient(120deg, #8fcfc4, #c79ad6, #e89f72, #ecc659, #b58ad0); }
+.theme-swatch.dark { background: linear-gradient(120deg, #4a1566, #0d4a5a, #6e1a52, #1a2a7e); }
