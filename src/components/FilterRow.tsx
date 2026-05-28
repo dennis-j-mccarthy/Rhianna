@@ -1,22 +1,29 @@
-"use client";
+import Link from "next/link";
 
-import { useState } from "react";
+type Tag = { id: string; name: string; slug: string };
 
-const filters = ["All Essays", "Astrology", "Healing", "Animal Communication", "Reflection"];
+export default function FilterRow({
+  tags,
+  activeTag,
+}: {
+  tags: Tag[];
+  activeTag: string | null;
+}) {
+  if (tags.length === 0) return null;
 
-export default function FilterRow() {
-  const [active, setActive] = useState(0);
   return (
     <div className="filter-row">
-      {filters.map((label, i) => (
-        <button
-          key={label}
-          type="button"
-          className={`filter ${i === active ? "active" : ""}`}
-          onClick={() => setActive(i)}
+      <Link href="/notebook" className={!activeTag ? "filter active" : "filter"}>
+        All Essays
+      </Link>
+      {tags.map((tag) => (
+        <Link
+          key={tag.id}
+          href={`/notebook?tag=${encodeURIComponent(tag.slug)}`}
+          className={activeTag === tag.slug ? "filter active" : "filter"}
         >
-          {label}
-        </button>
+          {tag.name}
+        </Link>
       ))}
     </div>
   );

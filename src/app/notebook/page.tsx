@@ -5,6 +5,9 @@ import SiteFooter from "@/components/SiteFooter";
 import Divider from "@/components/Divider";
 import FilterRow from "@/components/FilterRow";
 import NewsletterForm from "@/components/NewsletterForm";
+import { getFeaturedArticle, getPublishedArticles, getPublishedTags } from "@/lib/articles";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Notebook — Notes from the Listening · Rhianna Gray",
@@ -12,103 +15,31 @@ export const metadata = {
     "Slow writing on astrology cycles, animal wisdom, and the inner mechanics of healing. Published when there is something worth saying.",
 };
 
-type Essay = {
-  topic: "astrology" | "healing" | "animal" | "reflection";
-  topicLabel: string;
-  date: string;
-  title: string;
-  excerpt: string;
-  media:
-    | { kind: "image"; src: string; alt: string }
-    | { kind: "tinted"; tone: "violet" | "clay" | "sage" | "mint"; icon: string };
-};
+const TONES = ["violet", "clay", "sage", "mint"] as const;
 
-const essays: Essay[] = [
-  {
-    topic: "animal",
-    topicLabel: "Animal Communication",
-    date: "April 2026",
-    title: "What our dogs carry for us — and how to gently give it back.",
-    excerpt:
-      "Animals often hold our unspoken grief and ungrounded anxieties. A practice for noticing what is yours, and what is theirs.",
-    media: { kind: "image", src: "/images/mercy-and-rhianna.jpg", alt: "Rhianna and Mercy" },
-  },
-  {
-    topic: "healing",
-    topicLabel: "Healing",
-    date: "March 2026",
-    title: "Why the body refuses to budge — until something deeper is heard.",
-    excerpt:
-      "Stuck patterns are not stubbornness; they are intelligence. A look at how Quanta Freedom Healing speaks the body's native language.",
-    media: { kind: "tinted", tone: "clay", icon: "QFH" },
-  },
-  {
-    topic: "reflection",
-    topicLabel: "Reflection",
-    date: "February 2026",
-    title: "The forest, the listening, and what twenty-five years of this work has taught me.",
-    excerpt:
-      "On the quiet apprenticeship of intuitive practice — and the small daily rituals that keep the channel clear.",
-    media: { kind: "image", src: "/images/rhianna-cape-lookout.jpg", alt: "Rhianna in the forest" },
-  },
-  {
-    topic: "astrology",
-    topicLabel: "Astrology",
-    date: "January 2026",
-    title: "Mercury retrograde, again — and why we miss the gift each time.",
-    excerpt:
-      "Past the memes and the dread, a small case for the inward turn the planet is actually asking us to take.",
-    media: { kind: "tinted", tone: "violet", icon: "☿" },
-  },
-  {
-    topic: "animal",
-    topicLabel: "Animal Communication",
-    date: "December 2025",
-    title: "End-of-life conversations: what an animal almost always wants you to know.",
-    excerpt:
-      "Across hundreds of sessions, certain themes return. A tender map for the threshold none of us want to cross — but all of us will.",
-    media: { kind: "image", src: "/images/mercy-columbines.jpg", alt: "Mercy with columbines" },
-  },
-  {
-    topic: "reflection",
-    topicLabel: "Reflection",
-    date: "November 2025",
-    title: "Flower essences and the language of subtle change.",
-    excerpt:
-      "How a few drops of plant-attuned water can do the slow, structural work that big interventions cannot.",
-    media: { kind: "tinted", tone: "sage", icon: "✿" },
-  },
-  {
-    topic: "astrology",
-    topicLabel: "Astrology",
-    date: "October 2025",
-    title:
-      "Reading a chart is a way of falling in love with the person sitting in front of you.",
-    excerpt:
-      "The unexpected ethics of astrological practice — and what changes when we treat the chart as sacred biography.",
-    media: { kind: "image", src: "/images/rhianna-coot-lake.jpg", alt: "Rhianna at Coot Lake" },
-  },
-  {
-    topic: "healing",
-    topicLabel: "Healing",
-    date: "September 2025",
-    title: "Inherited patterns: meeting what isn't quite yours, but lives in you anyway.",
-    excerpt:
-      "A grandmother's grief, a father's vigilance — how the family field shows up in the body, and how QFH gently releases its grip.",
-    media: { kind: "tinted", tone: "clay", icon: "○" },
-  },
-  {
-    topic: "reflection",
-    topicLabel: "Reflection",
-    date: "August 2025",
-    title: "On open water swimming, performance scores, and listening to wild places.",
-    excerpt:
-      "Why the deeper practice happens outside the office — and what the lakes have been teaching me, in this slowly closing year.",
-    media: { kind: "tinted", tone: "mint", icon: "~" },
-  },
-];
+function monthYear(date: Date) {
+  return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
+}
 
-export default function NotebookPage() {
+function fullDate(date: Date) {
+  return date.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+}
+
+export default async function NotebookPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ tag?: string }>;
+}) {
+  const { tag } = await searchParams;
+
+  const [tags, featured, articles] = await Promise.all([
+    getPublishedTags(),
+    tag ? Promise.resolve(null) : getFeaturedArticle(),
+    getPublishedArticles({ tag }),
+  ]);
+
+  const gridArticles = articles.filter((a) => a.id !== featured?.id);
+
   return (
     <>
       <SiteHeader active="notebook" />
@@ -134,100 +65,99 @@ export default function NotebookPage() {
       <Divider />
 
       <div className="wrap">
-        <FilterRow />
+        <FilterRow tags={tags} activeTag={tag ?? null} />
       </div>
 
       {/* FEATURED */}
-      <section className="featured">
-        <div className="wrap">
-          <div className="media">
-            <Image
-              src="/images/rhianna-beach-halo.jpg"
-              alt="Rhianna walking through ocean surf at sunset"
-              fill
-              sizes="(max-width: 880px) 92vw, 50vw"
-            />
-          </div>
-          <div>
-            <div className="meta">
-              <span className="topic">— Featured Essay · Astrology</span>
-              <span>May 2026</span>
-              <span>14 min read</span>
+      {featured ? (
+        <section className="featured">
+          <div className="wrap">
+            <div className="media">
+              {featured.coverImage ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={featured.coverImage} alt={featured.title} />
+              ) : (
+                <div className="tinted-fill violet">
+                  <span className="icon">✦</span>
+                </div>
+              )}
             </div>
-            <h2>The Saturn–Neptune passage and the dissolving of an old self.</h2>
-            <p className="excerpt">
-              Once every thirty-six years, Saturn and Neptune meet in the sky — and something in us
-              is asked to surrender. Not give up. Surrender. Here is the difference, and the soft
-              scaffolding the cycle offers in return.
-            </p>
-            <Link href="/notebook" className="btn">
-              Read the essay <span className="arrow">→</span>
-            </Link>
-            <div className="author">
-              <div className="avatar">
-                <Image
-                  src="/images/rhianna-headshot.jpg"
-                  alt="Rhianna"
-                  fill
-                  sizes="40px"
-                />
+            <div>
+              <div className="meta">
+                <span className="topic">
+                  — Featured Essay{featured.tags[0] ? ` · ${featured.tags[0].name}` : ""}
+                </span>
+                <span>{monthYear(featured.publishedAt ?? featured.createdAt)}</span>
+                <span>{featured.readingMin} min read</span>
               </div>
-              <div>
-                <strong>Rhianna Gray</strong>Written from Boulder, CO &nbsp;·&nbsp; May 14, 2026
+              <h2>{featured.title}</h2>
+              <p className="excerpt">{featured.excerpt}</p>
+              <Link href={`/notebook/${featured.slug}`} className="btn">
+                Read the essay <span className="arrow">→</span>
+              </Link>
+              <div className="author">
+                <div className="avatar">
+                  <Image src="/images/rhianna-headshot.jpg" alt="Rhianna" fill sizes="40px" />
+                </div>
+                <div>
+                  <strong>Rhianna Gray</strong>Written from Boulder, CO &nbsp;·&nbsp;{" "}
+                  {fullDate(featured.publishedAt ?? featured.createdAt)}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       {/* ESSAY GRID */}
       <section className="essay-grid-section">
         <div className="wrap">
           <div className="head">
             <div>
-              <span className="eyebrow">Recent</span>
-              <h2>From the archive.</h2>
+              <span className="eyebrow">{tag ? "Filtered" : "Recent"}</span>
+              <h2>{tag ? `Tagged “${tag}”.` : "From the archive."}</h2>
             </div>
             <span className="kicker" style={{ fontSize: 16 }}>
-              Twelve essays published since 2024.
+              {gridArticles.length} {gridArticles.length === 1 ? "essay" : "essays"}
+              {tag ? "" : " published"}.
             </span>
           </div>
 
-          <div className="essay-grid">
-            {essays.map((e, i) => (
-              <article className="essay" key={i}>
-                {e.media.kind === "image" ? (
-                  <div className="media">
-                    <Image
-                      src={e.media.src}
-                      alt={e.media.alt}
-                      fill
-                      sizes="(max-width: 880px) 92vw, (max-width: 1080px) 45vw, 30vw"
-                    />
+          {gridArticles.length === 0 ? (
+            <p className="admin-muted">Nothing here yet.</p>
+          ) : (
+            <div className="essay-grid">
+              {gridArticles.map((article, i) => (
+                <article className="essay" key={article.id}>
+                  {article.coverImage ? (
+                    <div className="media">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={article.coverImage} alt={article.title} />
+                    </div>
+                  ) : (
+                    <div className={`media tinted ${TONES[i % TONES.length]}`}>
+                      <span className="icon">
+                        {article.tags[0]?.name.charAt(0).toUpperCase() ?? "✦"}
+                      </span>
+                    </div>
+                  )}
+                  <div className="meta">
+                    {article.tags[0] ? (
+                      <span className="topic-tag">{article.tags[0].name}</span>
+                    ) : (
+                      <span className="topic-tag">Essay</span>
+                    )}
+                    <span>{monthYear(article.publishedAt ?? article.createdAt)}</span>
                   </div>
-                ) : (
-                  <div className={`media tinted ${e.media.tone}`}>
-                    <span className="icon">{e.media.icon}</span>
-                  </div>
-                )}
-                <div className="meta">
-                  <span className={`topic-tag ${e.topic}`}>{e.topicLabel}</span>
-                  <span>{e.date}</span>
-                </div>
-                <h3>{e.title}</h3>
-                <p>{e.excerpt}</p>
-                <Link href="/notebook" className="read">
-                  Read essay
-                </Link>
-              </article>
-            ))}
-          </div>
-
-          <div style={{ textAlign: "center", marginTop: 72 }}>
-            <Link href="/notebook" className="btn ghost">
-              Load more essays
-            </Link>
-          </div>
+                  <h3>{article.title}</h3>
+                  <p>{article.excerpt}</p>
+                  <Link href={`/notebook/${article.slug}`} className="read">
+                    Read essay
+                  </Link>
+                </article>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
