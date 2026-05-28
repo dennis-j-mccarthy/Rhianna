@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Spectral, Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const serif = Spectral({
@@ -29,16 +30,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
-      <body>
-        <script
-          dangerouslySetInnerHTML={{
-            __html:
-              "try{var t=localStorage.getItem('rg-theme');if(t&&t!=='plain')document.documentElement.dataset.theme=t;}catch(e){}",
-          }}
-        />
-        {children}
-      </body>
+    <html lang="en" className={`${serif.variable} ${sans.variable}`} suppressHydrationWarning>
+      <head>
+        <Script id="theme-init" strategy="beforeInteractive">
+          {"try{var t=localStorage.getItem('rg-theme');if(t&&t!=='plain')document.documentElement.dataset.theme=t;}catch(e){}"}
+        </Script>
+      </head>
+      <body>{children}</body>
     </html>
   );
 }
