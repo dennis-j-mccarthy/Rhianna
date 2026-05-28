@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { buildNewsletterHtml, type NewsletterArticle } from "@/lib/newsletter";
 
 type PickerArticle = NewsletterArticle & { dateLabel: string; hasImage: boolean };
@@ -25,9 +25,23 @@ export default function NewsletterBuilder({
   );
   const available = articles.filter((a) => !selectedIds.includes(a.id));
 
-  const html = useMemo(
-    () => buildNewsletterHtml({ subject, intro, baseUrl, articles: selected }),
-    [subject, intro, baseUrl, selected],
+  // Debounce the preview so typing the intro doesn't reload the iframe (and its
+  // images) on every keystroke. Copy HTML always uses the live values below.
+  const [preview, setPreview] = useState({ subject, intro, baseUrl, selected });
+  useEffect(() => {
+    const t = setTimeout(() => setPreview({ subject, intro, baseUrl, selected }), 350);
+    return () => clearTimeout(t);
+  }, [subject, intro, baseUrl, selected]);
+
+  const previewHtml = useMemo(
+    () =>
+      buildNewsletterHtml({
+        subject: preview.subject,
+        intro: preview.intro,
+        baseUrl: preview.baseUrl,
+        articles: preview.selected,
+      }),
+    [preview],
   );
 
   function add(id: string) {
@@ -46,6 +60,7 @@ export default function NewsletterBuilder({
     });
   }
   async function copyHtml() {
+    const html = buildNewsletterHtml({ subject, intro, baseUrl, articles: selected });
     await navigator.clipboard.writeText(html);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -158,7 +173,7 @@ export default function NewsletterBuilder({
 
       <div className="nl-preview">
         <h3 className="nl-h">Preview</h3>
-        <iframe title="Newsletter preview" className="nl-frame" srcDoc={html} />
+        <iframe title="Newsletter preview" className="nl-frame" srcDoc={previewHtml} />
       </div>
     </div>
   );
