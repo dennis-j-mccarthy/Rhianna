@@ -32,8 +32,8 @@ function getRecognitionCtor(): RecognitionCtor | null {
 function DraftButton() {
   const { pending } = useFormStatus();
   return (
-    <button type="submit" className="btn" disabled={pending}>
-      {pending ? "Drafting…" : "Draft article"}
+    <button type="submit" className="btn btn-sm" disabled={pending}>
+      {pending ? "Drafting…" : "Draft"}
     </button>
   );
 }
@@ -130,9 +130,23 @@ export default function QuickCreate() {
     setOpen(false);
   }
 
+  // Open the modal and start recording immediately (within the click gesture).
+  function openAndStart() {
+    setSpeechError(null);
+    setIdea("");
+    ideaRef.current = "";
+    baseRef.current = "";
+    setOpen(true);
+    if (getRecognitionCtor()) {
+      activeRef.current = true;
+      setRecording(true);
+      begin();
+    }
+  }
+
   return (
     <>
-      <button type="button" className="btn ghost" onClick={() => setOpen(true)}>
+      <button type="button" className="btn ghost dictate-trigger" onClick={openAndStart}>
         Dictate
       </button>
 
@@ -178,20 +192,16 @@ export default function QuickCreate() {
                 {supported ? (
                   <button
                     type="button"
-                    className={recording ? "btn clay mic-on" : "btn ghost"}
+                    className={recording ? "btn clay btn-sm mic-on" : "btn ghost btn-sm"}
                     onClick={toggleMic}
                   >
-                    {recording ? "● Stop" : "Speak"}
+                    {recording ? "Pause" : "Resume"}
                   </button>
-                ) : (
-                  <span />
-                )}
-                <div className="modal-actions-right">
-                  <button type="button" className="btn ghost" onClick={close}>
-                    Cancel
-                  </button>
-                  <DraftButton />
-                </div>
+                ) : null}
+                <button type="button" className="btn ghost btn-sm modal-cancel" onClick={close}>
+                  Cancel
+                </button>
+                <DraftButton />
               </div>
             </form>
           </div>
