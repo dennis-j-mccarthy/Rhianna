@@ -139,8 +139,8 @@ export default function NewsletterBuilder({
                         {!a.hasImage ? " · no image" : ""}
                       </span>
                     </div>
-                    <button type="button" className="admin-bar-link" onClick={() => add(a.id)}>
-                      Add
+                    <button type="button" className="nl-add" onClick={() => add(a.id)}>
+                      + Add
                     </button>
                   </li>
                 ))}
