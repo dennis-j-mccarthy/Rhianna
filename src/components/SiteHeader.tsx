@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
 
 type NavKey = "home" | "astrology" | "animal" | "healing" | "notebook" | "contact";
 
@@ -33,6 +34,7 @@ export default function SiteHeader({ active }: { active?: NavKey }) {
               {l.label}
             </Link>
           ))}
+          <ThemeToggle />
         </nav>
       </div>
     </header>
