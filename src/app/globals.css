@@ -2271,3 +2271,90 @@ a.tag:hover { background: var(--ink); color: var(--cream); border-color: var(--i
   width: 100%; height: 70vh; min-height: 480px;
   border: 1px solid rgba(31,42,46,.15); border-radius: 8px; background: #fff;
 }
+
+/* ====================================================================
+   Theme picker (the divider moon) — plain / gradient light / gradient dark
+   ==================================================================== */
+
+/* Colorful gradient light — warm brand palette behind the cream */
+:root[data-theme="light"] body {
+  background:
+    radial-gradient(900px 520px at 12% -8%, var(--mauve-pale), transparent 60%),
+    radial-gradient(900px 520px at 100% 0%, var(--clay-pale), transparent 55%),
+    radial-gradient(820px 620px at 50% 112%, var(--mint-pale), transparent 60%),
+    var(--cream);
+  background-attachment: fixed;
+}
+
+/* Colorful gradient dark — deep plum/charcoal with brand glow.
+   Re-defines the neutral tokens so components adapt automatically. */
+:root[data-theme="dark"] {
+  --cream: #18131c;
+  --cream-deep: #241c29;
+  --paper: #1f1825;
+  --ink: #f2ebe6;
+  --ink-soft: #d8ccd3;
+  --muted: #9c909a;
+  --shadow-soft: 0 1px 2px rgba(0,0,0,.35), 0 18px 50px rgba(0,0,0,.45);
+}
+:root[data-theme="dark"] body {
+  background:
+    radial-gradient(1000px 620px at 15% -10%, rgba(122,106,131,.40), transparent 60%),
+    radial-gradient(1000px 620px at 100% 4%, rgba(182,120,85,.20), transparent 55%),
+    linear-gradient(165deg, #18131c, #1d1724 55%, #141a1c);
+  background-attachment: fixed;
+  color: var(--ink-soft);
+}
+/* Keep the already-dark sections dark (they use var(--ink) as a background,
+   which is now light after the flip) and make their text light. */
+:root[data-theme="dark"] .site-footer,
+:root[data-theme="dark"] .newsletter,
+:root[data-theme="dark"] .tone-ink,
+:root[data-theme="dark"] .pricing-section.dark {
+  background: #120e15;
+}
+:root[data-theme="dark"] .site-footer,
+:root[data-theme="dark"] .site-footer .logo-mark,
+:root[data-theme="dark"] .site-footer a,
+:root[data-theme="dark"] .site-footer h4,
+:root[data-theme="dark"] .newsletter h2,
+:root[data-theme="dark"] .tone-ink,
+:root[data-theme="dark"] .tone-ink h1,
+:root[data-theme="dark"] .tone-ink h2,
+:root[data-theme="dark"] .tone-ink h3 {
+  color: var(--ink);
+}
+:root[data-theme="dark"] .site-footer .logo-mark .crescent::before {
+  background: var(--ink);
+}
+
+/* The moon, now a theme control */
+.theme-toggle { position: relative; display: inline-block; }
+.theme-moon {
+  background: none; border: none; cursor: pointer;
+  font: inherit; color: inherit; line-height: 1; padding: 0 2px;
+}
+.theme-moon:hover { color: var(--clay-deep); }
+.theme-menu {
+  position: absolute; top: 150%; left: 50%; transform: translateX(-50%);
+  z-index: 60; display: flex; flex-direction: column; gap: 2px;
+  background: var(--paper); border: 1px solid rgba(31,42,46,.15);
+  border-radius: 8px; padding: 6px; box-shadow: var(--shadow-soft);
+  min-width: 172px;
+}
+.theme-opt {
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  background: none; border: none; cursor: pointer; text-align: left;
+  font-family: var(--sans); font-size: 13px; font-weight: 400;
+  letter-spacing: normal; text-transform: none; color: var(--ink-soft);
+  padding: 8px 10px; border-radius: 5px;
+}
+.theme-opt:hover { background: var(--cream-deep); }
+.theme-opt.is-active { color: var(--ink); font-weight: 600; }
+.theme-swatch {
+  width: 18px; height: 18px; border-radius: 50%; flex: none;
+  border: 1px solid rgba(31,42,46,.25);
+}
+.theme-swatch.plain { background: var(--cream); }
+.theme-swatch.light { background: linear-gradient(135deg, var(--mauve-pale), var(--clay-pale) 55%, var(--mint-pale)); }
+.theme-swatch.dark { background: linear-gradient(135deg, #2a2030, #6b4a2f); }

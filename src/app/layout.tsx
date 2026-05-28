@@ -30,7 +30,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${serif.variable} ${sans.variable}`}>
-      <body>{children}</body>
+      <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var t=localStorage.getItem('rg-theme');if(t&&t!=='plain')document.documentElement.dataset.theme=t;}catch(e){}",
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
