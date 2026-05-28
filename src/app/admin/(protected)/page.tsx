@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { db } from "@/lib/db";
 import { deleteArticle, togglePublished } from "@/app/admin/article-actions";
+import QuickCreate from "@/components/admin/QuickCreate";
 
 export const dynamic = "force-dynamic";
 
@@ -21,6 +22,10 @@ export default async function AdminArticlesPage() {
         <Link href="/admin/articles/new" className="btn">
           New article
         </Link>
+      </div>
+
+      <div className="admin-quick-create-row">
+        <QuickCreate />
       </div>
 
       {articles.length === 0 ? (

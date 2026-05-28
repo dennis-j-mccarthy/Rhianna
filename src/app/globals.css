@@ -2215,6 +2215,25 @@ a.tag:hover { background: var(--ink); color: var(--cream); border-color: var(--i
 }
 .ai-panel .btn { align-self: flex-start; }
 
+/* Quick create (voice) */
+.admin-quick-create-row { margin: -12px 0 28px; }
+.quick-create {
+  border: 1px solid var(--violet-pale);
+  background: linear-gradient(135deg, rgba(217,209,222,.25), rgba(251,247,238,.6));
+  border-radius: 8px; padding: 18px 20px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.quick-create-head { display: flex; align-items: center; gap: 10px; }
+.quick-create-head strong { font-family: var(--serif); font-size: 18px; font-weight: 400; color: var(--ink); }
+.quick-create-close { margin-left: auto; }
+.quick-create-form { display: flex; flex-direction: column; gap: 12px; }
+.quick-create-form textarea {
+  font-family: var(--sans); font-size: 15px; color: var(--ink);
+  background: var(--cream); width: 100%;
+  border: 1px solid rgba(31,42,46,.2); border-radius: 6px; padding: 12px 14px; resize: vertical;
+}
+.quick-create-actions { display: flex; align-items: center; gap: 12px; }
+
 /* Newsletter builder */
 .admin-page-wide { max-width: 1200px; }
 .nl { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
