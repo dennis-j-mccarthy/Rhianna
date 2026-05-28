@@ -57,16 +57,16 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* subtle grain texture overlay */
+/* grain texture overlay */
 body::before {
   content: "";
   position: fixed; inset: 0;
   pointer-events: none;
   z-index: 1000;
-  opacity: .35;
-  mix-blend-mode: multiply;
+  opacity: .5;
+  mix-blend-mode: soft-light;
   background-image:
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .12  0 0 0 0 .16  0 0 0 0 .18  0 0 0 .06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .14 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
 img { display: block; max-width: 100%; }
@@ -2287,14 +2287,14 @@ a.tag:hover { background: var(--ink); color: var(--cream); border-color: var(--i
 :root[data-theme="light"] body {
   background: linear-gradient(
     115deg,
-    #8fcfc4,
-    #c79ad6,
-    #e89f72,
-    #ecc659,
-    #9ad0b0,
+    #8fd0c4,
+    #6fb6a0,
+    #a48aa3,
+    #c2a0d6,
+    #88c9a8,
     #b58ad0,
-    #e0936a,
-    #8fcfc4
+    #9ec9c1,
+    #8fd0c4
   );
   background-size: 420% 420%;
   animation: rg-shift 11s linear infinite;
@@ -2384,5 +2384,5 @@ a.tag:hover { background: var(--ink); color: var(--cream); border-color: var(--i
   border: 1px solid rgba(31,42,46,.25);
 }
 .theme-swatch.plain { background: var(--cream); }
-.theme-swatch.light { background: linear-gradient(120deg, #8fcfc4, #c79ad6, #e89f72, #ecc659, #b58ad0); }
+.theme-swatch.light { background: linear-gradient(120deg, #8fd0c4, #a48aa3, #c2a0d6, #88c9a8, #9ec9c1); }
 .theme-swatch.dark { background: linear-gradient(120deg, #4a1566, #0d4a5a, #6e1a52, #1a2a7e); }
