@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
 import Link from "next/link";
+import { upload } from "@vercel/blob/client";
 import RichTextEditor, { type RichTextEditorHandle } from "@/components/admin/RichTextEditor";
 import { generateDraft } from "@/app/admin/ai-actions";
 import { slugify } from "@/lib/slug";
@@ -42,12 +43,34 @@ export default function ArticleForm({
   const [slugTouched, setSlugTouched] = useState(Boolean(article?.slug));
   const [excerpt, setExcerpt] = useState(article?.excerpt ?? "");
   const [tags, setTags] = useState(article?.tags.map((t) => t.name).join(", ") ?? "");
+  const [coverImage, setCoverImage] = useState(article?.coverImage ?? "");
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
 
   const [notes, setNotes] = useState("");
   const [aiPending, setAiPending] = useState(false);
   const [aiError, setAiError] = useState<string | null>(null);
 
   const editorRef = useRef<RichTextEditorHandle>(null);
+
+  async function handleCoverFile(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    e.target.value = "";
+    if (!file) return;
+    setUploadError(null);
+    setUploading(true);
+    try {
+      const blob = await upload(file.name, file, {
+        access: "public",
+        handleUploadUrl: "/api/blob/upload",
+      });
+      setCoverImage(blob.url);
+    } catch (error) {
+      setUploadError(error instanceof Error ? error.message : "Upload failed.");
+    } finally {
+      setUploading(false);
+    }
+  }
 
   async function handleDraft() {
     setAiError(null);
@@ -139,14 +162,45 @@ export default function ArticleForm({
       </div>
 
       <div className="field">
-        <label htmlFor="coverImage">Cover image URL</label>
+        <label htmlFor="coverImage">Cover image</label>
+        <div className="cover-upload">
+          {coverImage ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={coverImage} alt="Cover preview" className="cover-preview" />
+          ) : (
+            <div className="cover-preview empty">No image</div>
+          )}
+          <div className="cover-upload-controls">
+            <label className={uploading ? "btn ghost is-disabled" : "btn ghost"}>
+              {uploading ? "Uploading…" : "Upload image"}
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleCoverFile}
+                disabled={uploading}
+                style={{ display: "none" }}
+              />
+            </label>
+            {coverImage ? (
+              <button
+                type="button"
+                className="admin-linkbtn admin-danger"
+                onClick={() => setCoverImage("")}
+              >
+                Remove
+              </button>
+            ) : null}
+          </div>
+        </div>
         <input
           id="coverImage"
           name="coverImage"
           type="text"
-          placeholder="/images/example.jpg or https://…"
-          defaultValue={article?.coverImage ?? ""}
+          value={coverImage}
+          onChange={(e) => setCoverImage(e.target.value)}
+          placeholder="…or paste an image URL"
         />
+        {uploadError ? <p className="admin-error">{uploadError}</p> : null}
       </div>
 
       <div className="field">

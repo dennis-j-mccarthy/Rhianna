@@ -2140,6 +2140,20 @@ a.tag:hover { background: var(--ink); color: var(--cream); border-color: var(--i
 }
 .admin-form input:focus, .admin-form textarea:focus { outline: none; border-color: var(--clay-deep); }
 .admin-form textarea { resize: vertical; line-height: 1.6; }
+.cover-upload { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; }
+.cover-preview {
+  width: 120px; height: 80px; object-fit: cover; flex: none;
+  border-radius: 6px; border: 1px solid rgba(31,42,46,.15); background: var(--cream-deep);
+}
+.cover-preview.empty {
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--sans); font-size: 11px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+}
+.cover-upload-controls { display: flex; align-items: center; gap: 14px; }
+.cover-upload-controls .btn { cursor: pointer; margin: 0; }
+.cover-upload-controls .btn.is-disabled { opacity: .6; pointer-events: none; }
+
 .admin-form .field-row { display: flex; gap: 28px; flex-wrap: wrap; }
 .admin-form .checkbox {
   display: flex; align-items: center; gap: 10px;
