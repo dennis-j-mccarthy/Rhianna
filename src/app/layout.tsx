@@ -33,7 +33,7 @@ export default function RootLayout({
     <html lang="en" className={`${serif.variable} ${sans.variable}`} suppressHydrationWarning>
       <head>
         <Script id="theme-init" strategy="beforeInteractive">
-          {"try{var t=localStorage.getItem('rg-theme');if(t&&t!=='plain')document.documentElement.dataset.theme=t;}catch(e){}"}
+          {"try{var t=localStorage.getItem('rg-theme');document.documentElement.dataset.theme=(t==='dark')?'dark':'light';}catch(e){document.documentElement.dataset.theme='light';}"}
         </Script>
       </head>
       <body>{children}</body>

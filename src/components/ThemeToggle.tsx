@@ -1,75 +1,43 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
-type Theme = "plain" | "light" | "dark";
+type Theme = "light" | "dark";
 
-const THEMES: { id: Theme; label: string }[] = [
-  { id: "plain", label: "Plain" },
-  { id: "light", label: "Gradient Light" },
-  { id: "dark", label: "Gradient Dark" },
-];
+function currentTheme(): Theme {
+  return typeof document !== "undefined" &&
+    document.documentElement.dataset.theme === "dark"
+    ? "dark"
+    : "light";
+}
 
 export default function ThemeToggle() {
-  const [open, setOpen] = useState(false);
-  const [theme, setTheme] = useState<Theme>(() =>
-    typeof document !== "undefined"
-      ? ((document.documentElement.dataset.theme as Theme) || "plain")
-      : "plain",
-  );
-  const ref = useRef<HTMLSpanElement>(null);
+  const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
-    if (!open) return;
-    function onDown(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    }
-    document.addEventListener("mousedown", onDown);
-    return () => document.removeEventListener("mousedown", onDown);
-  }, [open]);
+    setTheme(currentTheme());
+  }, []);
 
-  function apply(next: Theme) {
-    if (next === "plain") {
-      document.documentElement.removeAttribute("data-theme");
-    } else {
-      document.documentElement.setAttribute("data-theme", next);
-    }
+  function toggle() {
+    const next: Theme = theme === "light" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", next);
     try {
       localStorage.setItem("rg-theme", next);
     } catch {}
     setTheme(next);
-    setOpen(false);
   }
 
+  const isLight = theme === "light";
+
   return (
-    <span className="theme-toggle" ref={ref}>
-      <button
-        type="button"
-        className="theme-moon"
-        aria-label="Change color theme"
-        aria-haspopup="menu"
-        aria-expanded={open}
-        onClick={() => setOpen((o) => !o)}
-      >
-        ☽
-      </button>
-      {open ? (
-        <span className="theme-menu" role="menu">
-          {THEMES.map((t) => (
-            <button
-              key={t.id}
-              type="button"
-              role="menuitemradio"
-              aria-checked={theme === t.id}
-              className={theme === t.id ? "theme-opt is-active" : "theme-opt"}
-              onClick={() => apply(t.id)}
-            >
-              <span className={`theme-swatch ${t.id}`} aria-hidden="true" />
-              {t.label}
-            </button>
-          ))}
-        </span>
-      ) : null}
-    </span>
+    <button
+      type="button"
+      className="theme-moon"
+      aria-label={isLight ? "Switch to dark theme" : "Switch to light theme"}
+      title={isLight ? "Switch to dark theme" : "Switch to light theme"}
+      onClick={toggle}
+    >
+      {isLight ? "☾" : "☀"}
+    </button>
   );
 }

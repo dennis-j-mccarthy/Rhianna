@@ -33,6 +33,7 @@
     "@types/sanitize-html": "^2.16.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
+    "playwright": "^1.60.0",
     "prisma": "^7.8.0",
     "tailwindcss": "^4",
     "tsx": "^4.22.3",
