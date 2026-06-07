@@ -1296,7 +1296,7 @@ ul.bare li::before {
 /* ---------- QFH ---------- */
 .qfh-hero {
   background: linear-gradient(180deg, var(--cream) 0%, var(--mint-pale) 100%);
-  padding-bottom: clamp(80px, 10vw, 130px);
+  padding-bottom: clamp(128px, 16vw, 208px);
   position: relative;
   overflow: hidden;
 }
@@ -1305,7 +1305,7 @@ ul.bare li::before {
   grid-template-columns: 1.1fr 1fr;
   gap: clamp(40px, 6vw, 80px);
   align-items: center;
-  padding-top: clamp(40px, 6vw, 80px);
+  padding-top: clamp(64px, 9.6vw, 128px);
 }
 .qfh-hero h1 em { font-style: italic; color: var(--clay-deep); }
 .qfh-hero .sub {
@@ -1316,13 +1316,13 @@ ul.bare li::before {
   margin: 0 0 2em;
 }
 .qfh-hero .qfh-hero-media {
-  max-width: 460px;
+  max-width: 736px;
   margin: 0 auto;
 }
 .qfh-hero .qfh-hero-media img {
   width: 100%; height: auto;
   border-radius: 12px;
-  box-shadow: 0 30px 70px rgba(0,0,0,.18);
+  box-shadow: 0 48px 112px rgba(0,0,0,.18);
   display: block;
 }
 @media (max-width: 880px) { .qfh-hero .wrap { grid-template-columns: 1fr; } }
