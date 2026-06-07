@@ -77,15 +77,17 @@ export default function AstrologyPage() {
                   sizes="(max-width: 880px) 60vw, 250px"
                 />
               </div>
-              {zodiacGlyphs.map((g) => (
-                <div
-                  key={g.glyph}
-                  className="glyph"
-                  style={{ top: g.top, left: g.left }}
-                >
-                  {g.glyph}
-                </div>
-              ))}
+              <div className="zodiac-orbit">
+                {zodiacGlyphs.map((g) => (
+                  <div
+                    key={g.glyph}
+                    className="glyph"
+                    style={{ top: g.top, left: g.left }}
+                  >
+                    <span className="glyph-inner">{g.glyph}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
