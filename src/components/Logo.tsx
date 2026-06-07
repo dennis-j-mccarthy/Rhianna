@@ -13,7 +13,6 @@ export default function Logo({ align = "center", showTag = false }: Props) {
       style={align === "start" ? { alignItems: "flex-start", borderBottom: "none" } : undefined}
     >
       <span className="logo-mark">
-        <span className="crescent" />
         Rhianna Gray
       </span>
       {showTag && <span className="logo-tag">Healer · Intuitive · Astrologer</span>}
