@@ -1303,7 +1303,7 @@ ul.bare li::before {
 }
 .qfh-hero .wrap {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
+  grid-template-columns: 1fr 1.4fr;
   gap: clamp(40px, 6vw, 80px);
   align-items: center;
   padding-top: clamp(64px, 9.6vw, 128px);
