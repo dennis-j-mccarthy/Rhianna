@@ -796,7 +796,7 @@ ul.bare li::before {
 .astro-hero .logo-tag { color: rgba(245,239,228,.6); }
 .astro-hero .logo-mark { color: var(--cream); }
 .astro-hero .logo-mark .crescent::before { background: var(--cream); }
-.astro-hero h1 { color: var(--cream); }
+.astro-hero h1 { color: var(--cream); font-size: clamp(28px, 3.6vw, 48px); }
 .astro-hero h1 em { color: var(--mint); font-style: italic; }
 .astro-hero .eyebrow { color: rgba(245,239,228,.7); }
 .astro-hero .stars {
@@ -824,10 +824,10 @@ ul.bare li::before {
 }
 .astro-hero .sub {
   font-family: var(--serif); font-style: italic;
-  font-size: clamp(20px, 2.1vw, 26px);
+  font-size: clamp(16px, 1.6vw, 20px);
   color: rgba(245,239,228,.85);
   max-width: 36ch;
-  margin: 0 0 2.4em;
+  margin: 0 0 2em;
 }
 
 .chart-wheel {
@@ -836,6 +836,7 @@ ul.bare li::before {
   width: 100%;
   max-width: 720px;
   margin: 0 auto;
+  align-self: center;
   filter: drop-shadow(0 0 80px rgba(158,201,193,.28));
 }
 .chart-wheel::before {
