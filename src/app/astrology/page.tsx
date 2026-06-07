@@ -10,14 +10,18 @@ export const metadata = {
 };
 
 const zodiacGlyphs: { glyph: string; top: string; left: string }[] = [
-  { glyph: "♈", top: "8%", left: "50%" },
-  { glyph: "♉", top: "22%", left: "84%" },
-  { glyph: "♊", top: "50%", left: "95%" },
-  { glyph: "♋", top: "78%", left: "84%" },
-  { glyph: "♌", top: "92%", left: "50%" },
-  { glyph: "♍", top: "78%", left: "16%" },
-  { glyph: "♎", top: "50%", left: "5%" },
-  { glyph: "♏", top: "22%", left: "16%" },
+  { glyph: "♈", top: "2%",  left: "50%" },
+  { glyph: "♉", top: "10%", left: "75%" },
+  { glyph: "♊", top: "28%", left: "93%" },
+  { glyph: "♋", top: "50%", left: "98%" },
+  { glyph: "♌", top: "72%", left: "93%" },
+  { glyph: "♍", top: "90%", left: "75%" },
+  { glyph: "♎", top: "98%", left: "50%" },
+  { glyph: "♏", top: "90%", left: "25%" },
+  { glyph: "♐", top: "72%", left: "7%"  },
+  { glyph: "♑", top: "50%", left: "2%"  },
+  { glyph: "♒", top: "28%", left: "7%"  },
+  { glyph: "♓", top: "10%", left: "25%" },
 ];
 
 function HouseLines() {
