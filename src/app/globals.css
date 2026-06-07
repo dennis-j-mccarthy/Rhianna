@@ -1315,13 +1315,14 @@ ul.bare li::before {
   margin: 0 0 2em;
 }
 .qfh-hero .qfh-hero-media {
-  position: relative;
   max-width: 460px;
   margin: 0 auto;
-  aspect-ratio: 3/4;
+}
+.qfh-hero .qfh-hero-media img {
+  width: 100%; height: auto;
   border-radius: 12px;
-  overflow: hidden;
   box-shadow: 0 30px 70px rgba(0,0,0,.18);
+  display: block;
 }
 @media (max-width: 880px) { .qfh-hero .wrap { grid-template-columns: 1fr; } }
 

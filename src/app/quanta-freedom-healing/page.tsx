@@ -64,10 +64,10 @@ export default function QFHPage() {
             <Image
               src="/images/rhianna-session.jpg"
               alt="Rhianna in a healing session with a client by the water"
-              fill
+              width={460}
+              height={614}
               priority
               sizes="(max-width: 880px) 92vw, 460px"
-              style={{ objectFit: "cover", objectPosition: "center top" }}
             />
           </div>
         </div>
