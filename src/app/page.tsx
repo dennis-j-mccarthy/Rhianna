@@ -4,8 +4,10 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import Divider from "@/components/Divider";
 import ZoomMock from "@/components/ZoomMock";
+import { getAllTextBlocks } from "@/lib/text";
 
-export default function Home() {
+export default async function Home() {
+  const ov = await getAllTextBlocks(); const t = (id: string, fb: string) => ov[id] ?? fb
   return (
     <>
       <SiteHeader active="home" />
@@ -25,10 +27,10 @@ export default function Home() {
             </div>
 
             <h1 className="cover-headline">
-              A quiet <em>return</em> to the deeper intelligence within.
+              {t('h-hero-hl', 'A quiet return to the deeper intelligence within.')}
             </h1>
 
-            <span className="cover-eyebrow">Twenty-five years of listening</span>
+            <span className="cover-eyebrow">{t('h-hero-ey', 'Twenty-five years of listening')}</span>
 
             <div className="cover-cta">
               <Link href="/contact" className="btn">
@@ -40,8 +42,7 @@ export default function Home() {
             </div>
 
             <p className="cover-credit">
-              &ldquo;Her ability to pinpoint the core issue made the work incredibly fast and
-              effective.&rdquo;
+              &ldquo;{t('h-hero-tl', 'Her ability to pinpoint the core issue made the work incredibly fast and effective.')}&rdquo;
               <cite>— Teresa · client since 2022</cite>
             </p>
           </div>
@@ -62,17 +63,13 @@ export default function Home() {
             />
           </div>
           <div>
-            <span className="eyebrow">An introduction</span>
-            <h2>Raised among astrologers — devoted to the unseen.</h2>
+            <span className="eyebrow">{t('h-intro-ey', 'An introduction')}</span>
+            <h2>{t('h-intro-hl', 'Raised among astrologers — devoted to the unseen.')}</h2>
             <p>
-              For over twenty-five years, I have worked at the threshold where psychology, energy,
-              and the soul meet — supporting people and animals through evolutionary astrology,
-              intuitive guidance, and the Quanta Freedom Healing™ method.
+              {t('h-intro-b1', 'For over twenty-five years, I have worked at the threshold where psychology, energy, and the soul meet — supporting people and animals through evolutionary astrology, intuitive guidance, and the Quanta Freedom Healing™ method.')}
             </p>
             <p>
-              My approach is quiet, precise, and deeply transformative. The work is not about
-              adding more; it is about a return — to clarity, to alignment, to the deeper
-              intelligence that has been within you all along.
+              {t('h-intro-b2', 'My approach is quiet, precise, and deeply transformative. The work is not about adding more; it is about a return — to clarity, to alignment, to the deeper intelligence that has been within you all along.')}
             </p>
             <Link href="/contact" className="arrow-link" style={{ marginTop: 24 }}>
               Read more about Rhianna
@@ -86,13 +83,11 @@ export default function Home() {
         <div className="wrap">
           <div className="services-head">
             <div>
-              <span className="eyebrow">The Three Doorways</span>
-              <h2>Three offerings, one underlying invitation.</h2>
+              <span className="eyebrow">{t('h-svc-ey', 'The Three Doorways')}</span>
+              <h2>{t('h-svc-hl', 'Three offerings, one underlying invitation.')}</h2>
             </div>
             <p className="kicker" style={{ fontSize: 18 }}>
-              Each modality is a different aperture onto the same field — your soul&apos;s pattern,
-              the body&apos;s wisdom, the language of the more-than-human world. Choose the one
-              that calls.
+              {t('h-svc-kk', "Each modality is a different aperture onto the same field — your soul's pattern, the body's wisdom, the language of the more-than-human world. Choose the one that calls.")}
             </p>
           </div>
 
@@ -114,9 +109,7 @@ export default function Home() {
                 <em style={{ color: "var(--violet-deep)" }}>soul&apos;s path.</em>
               </h3>
               <p className="service-copy">
-                Evolutionary astrology trained at the Forrest Center — natal blueprint, current
-                transits, and the deeper themes carried forward through time. Not prediction. A way
-                to consciously participate in your own life.
+                {t('h-svc-as', "Evolutionary astrology trained at the Forrest Center — natal blueprint, current transits, and the deeper themes carried forward through time. Not prediction. A way to consciously participate in your own life.")}
               </p>
               <div className="service-meta">
                 <span>60 minutes</span>
@@ -147,9 +140,7 @@ export default function Home() {
                 <em style={{ color: "var(--sage-deep)" }}>beyond words.</em>
               </h3>
               <p className="service-copy">
-                Empathic communication with your animal — receiving sensations, emotions, images,
-                and insights that reflect their experience. Behavioral patterns, transitions,
-                end-of-life. Custom flower essence formulas when called for.
+                {t('h-svc-ac', "Empathic communication with your animal — receiving sensations, emotions, images, and insights that reflect their experience. Behavioral patterns, transitions, end-of-life. Custom flower essence formulas when called for.")}
               </p>
               <div className="service-meta">
                 <span>60 / 30 min</span>
@@ -187,9 +178,7 @@ export default function Home() {
                 <em style={{ color: "var(--clay-deep)" }}>the root.</em>
               </h3>
               <p className="service-copy">
-                A quantum healing modality (developed by Melanie Tonia Evans) for releasing stored
-                trauma, inherited patterns, and subconscious beliefs held in the nervous system and
-                energy field. Often, what therapy has held for years moves in a single session.
+                {t('h-svc-qf', "A quantum healing modality (developed by Melanie Tonia Evans) for releasing stored trauma, inherited patterns, and subconscious beliefs held in the nervous system and energy field. Often, what therapy has held for years moves in a single session.")}
               </p>
               <div className="service-meta">
                 <span>60 minutes</span>
@@ -210,15 +199,10 @@ export default function Home() {
           <div>
             <span className="eyebrow">Remote · Worldwide</span>
             <h2>
-              Wherever you are,
-              <br />
-              the field is here.
+              {t('h-rem-hl', 'Wherever you are, the field is here.')}
             </h2>
             <p>
-              Every session is held over Zoom or by phone — for both human and animal clients.
-              Distance is no obstacle to the work; the connection is energetic, not geographic.
-              Clients join from across the United States and around the world, often more at ease
-              in their own quiet space than they would be in an office.
+              {t('h-rem-b1', 'Every session is held over Zoom or by phone — for both human and animal clients. Distance is no obstacle to the work; the connection is energetic, not geographic. Clients join from across the United States and around the world, often more at ease in their own quiet space than they would be in an office.')}
             </p>
             <p style={{ marginTop: "1.5em" }}>
               <Link href="/contact" className="btn clay">
@@ -260,9 +244,7 @@ export default function Home() {
           <div className="testimonial-card">
             <div className="quote-mark">&ldquo;</div>
             <blockquote>
-              Challenges I had been carrying for over twenty years were resolved in a single
-              session. Her intuitive clarity, professionalism, and heart-centered presence make
-              every session deeply transformative.
+              {t('h-tes-qt', 'Challenges I had been carrying for over twenty years were resolved in a single session. Her intuitive clarity, professionalism, and heart-centered presence make every session deeply transformative.')}
             </blockquote>
             <cite>— Teresa &nbsp; · &nbsp; Client since 2022</cite>
           </div>
@@ -275,11 +257,10 @@ export default function Home() {
           <div className="services-head">
             <div>
               <span className="eyebrow">Notebook · The Journal</span>
-              <h2>Notes from the listening.</h2>
+              <h2>{t('h-nb-hl', 'Notes from the listening.')}</h2>
             </div>
             <p className="kicker" style={{ fontSize: 18 }}>
-              Slow writing on astrology cycles, animal wisdom, and the inner mechanics of healing.
-              Published when there is something worth saying.
+              {t('h-nb-kk', 'Slow writing on astrology cycles, animal wisdom, and the inner mechanics of healing. Published when there is something worth saying.')}
             </p>
           </div>
 
@@ -324,10 +305,9 @@ export default function Home() {
       <section className="closing">
         <div className="wrap-narrow">
           <span className="eyebrow">An invitation</span>
-          <h2>If something in you is asking to be heard —</h2>
+          <h2>{t('h-cl-hl', 'If something in you is asking to be heard —')}</h2>
           <p className="pillquote">
-            &ldquo;My work is quiet, precise, and deeply transformative. It is an invitation to
-            return to clarity, alignment, and the deeper intelligence within your life.&rdquo;
+            &ldquo;{t('h-cl-qt', "My work is quiet, precise, and deeply transformative. It is an invitation to return to clarity, alignment, and the deeper intelligence within your life.")}&rdquo;
           </p>
           <Link href="/contact" className="btn">
             Book Your First Session <span className="arrow">→</span>

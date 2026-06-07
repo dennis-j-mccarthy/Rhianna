@@ -4,6 +4,7 @@ import SiteFooter from "@/components/SiteFooter";
 import Divider from "@/components/Divider";
 import ZoomMock from "@/components/ZoomMock";
 import ContactForm from "@/components/ContactForm";
+import { getAllTextBlocks } from "@/lib/text";
 
 export const metadata = {
   title: "Contact & Booking — Rhianna Gray",
@@ -39,7 +40,17 @@ const faqs = [
   },
 ];
 
-export default function ContactPage() {
+// Map FAQ index to block ID suffixes for questions and answers that have overrides
+const faqQIds: Record<number, string> = { 0: 'ct-faq-q1' };
+const faqAIds: Record<number, string> = {
+  0: 'ct-faq-a1',
+  1: 'ct-faq-a2',
+  3: 'ct-faq-a4',
+  4: 'ct-faq-a5',
+};
+
+export default async function ContactPage() {
+  const ov = await getAllTextBlocks(); const t = (id: string, fb: string) => ov[id] ?? fb
   return (
     <>
       <SiteHeader active="contact" />
@@ -48,11 +59,10 @@ export default function ContactPage() {
         <div className="wrap-narrow">
           <span className="eyebrow">Contact &amp; Booking</span>
           <h1>
-            Begin a <em>conversation.</em>
+            {t('ct-hero-hl', 'Begin a conversation.')}
           </h1>
           <p className="tagline">
-            Choose a session below, or send a note — whichever feels easier. I read everything that
-            comes in and reply within a few days.
+            {t('ct-hero-tl', 'Choose a session below, or send a note — whichever feels easier. I read everything that comes in and reply within a few days.')}
           </p>
         </div>
       </section>
@@ -131,10 +141,9 @@ export default function ContactPage() {
         <div className="wrap">
           <div>
             <span className="eyebrow">Or, A Note</span>
-            <h2>Not sure where to start? Tell me a little.</h2>
+            <h2>{t('ct-cf-hl', 'Not sure where to start? Tell me a little.')}</h2>
             <p>
-              If you would rather not book directly, send a message. I&apos;ll reply with the
-              doorway that feels most appropriate for what you&apos;re carrying.
+              {t('ct-cf-bd', "If you would rather not book directly, send a message. I'll reply with the doorway that feels most appropriate for what you're carrying.")}
             </p>
 
             <div className="quick">
@@ -167,8 +176,8 @@ export default function ContactPage() {
           <div className="accordion-list">
             {faqs.map((f, i) => (
               <details key={i} open={f.open}>
-                <summary>{f.q}</summary>
-                <p>{f.a}</p>
+                <summary>{faqQIds[i] ? t(faqQIds[i], f.q) : f.q}</summary>
+                <p>{faqAIds[i] ? t(faqAIds[i], f.a) : f.a}</p>
               </details>
             ))}
           </div>
@@ -230,8 +239,7 @@ export default function ContactPage() {
           </div>
           <span className="eyebrow">A Closing Note</span>
           <h2>
-            &ldquo;My work is quiet, precise, and deeply transformative. I look forward to hearing
-            from you.&rdquo;
+            &ldquo;{t('ct-cl-hl', 'My work is quiet, precise, and deeply transformative. I look forward to hearing from you.')}&rdquo;
           </h2>
           <p style={{ maxWidth: "50ch", margin: "0 auto" }}>— Rhianna</p>
         </div>

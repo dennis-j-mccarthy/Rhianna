@@ -220,6 +220,12 @@ export default function VetThatText() {
       const v = localStorage.getItem(REVISIONS_KEY)
       if (v) setRevisions(JSON.parse(v))
     } catch {}
+    fetch('/api/text-blocks')
+      .then(r => r.json())
+      .then((db: Record<string, string>) => {
+        setRevisions(prev => ({ ...prev, ...db }))
+      })
+      .catch(() => {})
   }, [])
 
   const rate = (id: string, value: number) => {
@@ -235,11 +241,16 @@ export default function VetThatText() {
     setSaved(false)
   }
 
-  const saveRevision = () => {
+  const saveRevision = async () => {
     if (!activeBlock) return
     const next = { ...revisions, [activeBlock.id]: editText }
     setRevisions(next)
     try { localStorage.setItem(REVISIONS_KEY, JSON.stringify(next)) } catch {}
+    await fetch('/api/text-blocks', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: activeBlock.id, text: editText }),
+    }).catch(() => {})
     setSaved(true)
     setTimeout(() => setSaved(false), 2000)
   }
@@ -249,6 +260,11 @@ export default function VetThatText() {
     delete next[id]
     setRevisions(next)
     try { localStorage.setItem(REVISIONS_KEY, JSON.stringify(next)) } catch {}
+    fetch('/api/text-blocks', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id }),
+    }).catch(() => {})
     if (activeBlock?.id === id) setEditText(activeBlock.text)
   }
 

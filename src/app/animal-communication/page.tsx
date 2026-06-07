@@ -3,6 +3,7 @@ import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import ZoomMock from "@/components/ZoomMock";
+import { getAllTextBlocks } from "@/lib/text";
 
 export const metadata = {
   title: "Intuitive Animal Communication — Rhianna Gray",
@@ -23,7 +24,8 @@ const supportItems = [
 
 const romans = ["i.", "ii.", "iii.", "iv.", "v.", "vi.", "vii.", "viii."];
 
-export default function AnimalPage() {
+export default async function AnimalPage() {
+  const ov = await getAllTextBlocks(); const t = (id: string, fb: string) => ov[id] ?? fb
   return (
     <>
       <SiteHeader active="animal" />
@@ -33,12 +35,10 @@ export default function AnimalPage() {
           <div>
             <span className="eyebrow">02 · Intuitive Animal Communication</span>
             <h1>
-              A deeper way to <em>understand</em> your animal.
+              {t('ac-hero-hl', 'A deeper way to understand your animal.')}
             </h1>
             <p className="sub">
-              Animals are deeply aware, sensitive beings who communicate in ways that go beyond
-              words. Sometimes you sense they are trying to express something — but you can&apos;t
-              quite hear it yet.
+              {t('ac-hero-sb', "Animals are deeply aware, sensitive beings who communicate in ways that go beyond words. Sometimes you sense they are trying to express something — but you can't quite hear it yet.")}
             </p>
             <Link href="/contact" className="btn">
               Book a Session <span className="arrow">→</span>
@@ -60,12 +60,12 @@ export default function AnimalPage() {
         <div className="wrap">
           <div>
             <span className="eyebrow">You may be wondering</span>
-            <h2>Three quiet questions most people arrive with.</h2>
+            <h2>{t('ac-wn-hl', 'Three quiet questions most people arrive with.')}</h2>
           </div>
           <div className="questions">
-            <div>Why is this behavior happening — and is it asking something of me?</div>
-            <div>Is my animal trying to tell me something I haven&apos;t yet heard?</div>
-            <div>How can I better support them, especially now?</div>
+            <div>{t('ac-wn-q1', 'Why is this behavior happening — and is it asking something of me?')}</div>
+            <div>{t('ac-wn-q2', "Is my animal trying to tell me something I haven't yet heard?")}</div>
+            <div>{t('ac-wn-q3', 'How can I better support them, especially now?')}</div>
           </div>
         </div>
       </section>
@@ -74,20 +74,15 @@ export default function AnimalPage() {
         <div className="wrap">
           <div>
             <span className="eyebrow">Listening Beyond Words</span>
-            <h2>The communication itself.</h2>
+            <h2>{t('ac-lb-hl', 'The communication itself.')}</h2>
             <p>
-              Through intuitive connection, I communicate with your animal at an empathic level —
-              receiving physical sensations, impressions, emotions, images, and insights that
-              reflect their experience.
+              {t('ac-lb-b1', 'Through intuitive connection, I communicate with your animal at an empathic level — receiving physical sensations, impressions, emotions, images, and insights that reflect their experience.')}
             </p>
             <p>
-              These sessions offer a space where your animal, and you, can be heard, understood,
-              and supported. As clarity unfolds, a sense of peace can follow. Often, what they
-              share brings not only clarity — but a deeper sense of connection between you.
+              {t('ac-lb-b2', 'These sessions offer a space where your animal, and you, can be heard, understood, and supported. As clarity unfolds, a sense of peace can follow. Often, what they share brings not only clarity — but a deeper sense of connection between you.')}
             </p>
             <p className="pillquote" style={{ marginTop: "2em", color: "var(--sage-deep)" }}>
-              &ldquo;You and your animal share a deep bond, where supporting one another creates
-              harmony for both.&rdquo;
+              &ldquo;{t('ac-lb-qt', 'You and your animal share a deep bond, where supporting one another creates harmony for both.')}&rdquo;
             </p>
           </div>
           <div className="media">
@@ -140,16 +135,12 @@ export default function AnimalPage() {
           </div>
           <div>
             <span className="eyebrow">A Shared Journey</span>
-            <h2>What they carry — and what we carry back.</h2>
+            <h2>{t('ac-sj-hl', 'What they carry — and what we carry back.')}</h2>
             <p>
-              Animals are often deeply connected to our own emotional and spiritual lives. At
-              times, what they express may reflect not only their experience — but also aspects of
-              the environment, or the people they are bonded with.
+              {t('ac-sj-b1', 'Animals are often deeply connected to our own emotional and spiritual lives. At times, what they express may reflect not only their experience — but also aspects of the environment, or the people they are bonded with.')}
             </p>
             <p>
-              As with our deepest relationships, they can transform us, and lead us more fully into
-              our own hearts. These sessions can open a deeper awareness of that connection,
-              bringing healing, insight, and harmony to both you and your animal.
+              {t('ac-sj-b2', 'As with our deepest relationships, they can transform us, and lead us more fully into our own hearts. These sessions can open a deeper awareness of that connection, bringing healing, insight, and harmony to both you and your animal.')}
             </p>
           </div>
         </div>
@@ -159,15 +150,12 @@ export default function AnimalPage() {
         <div className="wrap">
           <div>
             <span className="eyebrow">Additional Support</span>
-            <h2>Custom flower essence formulas.</h2>
+            <h2>{t('ac-fe-hl', 'Custom flower essence formulas.')}</h2>
             <p>
-              When appropriate, I create customized flower essence formulas to support your animal
-              in gently shifting habitual patterns and emotional imprints — helping them move
-              toward greater calm, trust, and ease.
+              {t('ac-fe-b1', 'When appropriate, I create customized flower essence formulas to support your animal in gently shifting habitual patterns and emotional imprints — helping them move toward greater calm, trust, and ease.')}
             </p>
             <p>
-              The essences are formulated specifically for what your animal has shared during our
-              session, and follow them home as a quiet continuation of the work.
+              {t('ac-fe-b2', 'The essences are formulated specifically for what your animal has shared during our session, and follow them home as a quiet continuation of the work.')}
             </p>
           </div>
           <div>
@@ -194,17 +182,12 @@ export default function AnimalPage() {
         <div className="wrap">
           <div>
             <span className="eyebrow">My Approach &amp; The Remote Field</span>
-            <h2>Twenty-five years of listening — over Zoom, or by phone.</h2>
+            <h2>{t('ac-ap-hl', 'Twenty-five years of listening — over Zoom, or by phone.')}</h2>
             <p>
-              In 2000, I worked as an assistant at a holistic veterinary practice and discovered my
-              ability to communicate with animals. Soon, clients were scheduling sessions with me
-              — in the office and beyond.
+              {t('ac-ap-b1', 'In 2000, I worked as an assistant at a holistic veterinary practice and discovered my ability to communicate with animals. Soon, clients were scheduling sessions with me — in the office and beyond.')}
             </p>
             <p>
-              I approach each communication with openness and care, allowing your animal&apos;s
-              voice to come forward in a way that feels clear and supportive. The work itself is
-              energetic, so your animal does not need to be on camera. Most simply rest nearby
-              while we speak.
+              {t('ac-ap-b2', "I approach each communication with openness and care, allowing your animal's voice to come forward in a way that feels clear and supportive. The work itself is energetic, so your animal does not need to be on camera. Most simply rest nearby while we speak.")}
             </p>
           </div>
           <ZoomMock
@@ -291,8 +274,7 @@ export default function AnimalPage() {
       <section className="closing-band">
         <div className="wrap-narrow">
           <p className="pillquote" style={{ margin: "0 auto", maxWidth: "30ch", textAlign: "center" }}>
-            &ldquo;When your animal is heard, something softens — and a deeper connection naturally
-            unfolds.&rdquo;
+            &ldquo;{t('ac-cl-qt', 'When your animal is heard, something softens — and a deeper connection naturally unfolds.')}&rdquo;
           </p>
         </div>
       </section>

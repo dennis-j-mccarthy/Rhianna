@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import { getAllTextBlocks } from "@/lib/text";
 
 export const metadata = {
   title: "Astrological Readings — Rhianna Gray",
@@ -38,7 +39,8 @@ function HouseLines() {
   );
 }
 
-export default function AstrologyPage() {
+export default async function AstrologyPage() {
+  const ov = await getAllTextBlocks(); const t = (id: string, fb: string) => ov[id] ?? fb
   return (
     <>
       {/* HERO — dark night sky, includes its own header for the cream-on-dark look */}
@@ -49,19 +51,12 @@ export default function AstrologyPage() {
         <div className="wrap">
           <div className="hero-grid">
             <div>
-              <span className="eyebrow">01 · Astrological Readings</span>
+              <span className="eyebrow">{t('as-hero-ey', '01 · Astrological Readings')}</span>
               <h1>
-                A map of your
-                <br />
-                <em>soul&apos;s path —</em>
-                <br />
-                and the cycles
-                <br />
-                it is moving through.
+                {t('as-hero-hl', "A map of your soul's path — and the cycles it is moving through.")}
               </h1>
               <p className="sub">
-                Evolutionary astrology trained at the Forrest Center. Not prediction. A way to
-                consciously participate in the unfolding of your own life.
+                {t('as-hero-sb', "Evolutionary astrology trained at the Forrest Center. Not prediction. A way to consciously participate in the unfolding of your own life.")}
               </p>
               <Link href="/contact" className="btn clay">
                 Schedule a Reading <span className="arrow">→</span>
@@ -101,23 +96,19 @@ export default function AstrologyPage() {
       <section className="patterns">
         <div className="wrap">
           <div>
-            <span className="eyebrow">When Life Feels Confusing, Or Repetitive</span>
-            <h2>The questions most people arrive with.</h2>
+            <span className="eyebrow">{t('as-pat-ey', 'When Life Feels Confusing, Or Repetitive')}</span>
+            <h2>{t('as-pat-hl', 'The questions most people arrive with.')}</h2>
           </div>
           <div>
             <div className="questions">
-              <div>You may notice you attract the same kind of partner — again and again.</div>
+              <div>{t('as-pat-q1', 'You may notice you attract the same kind of partner — again and again.')}</div>
               <div>
-                You face the same kind of challenge, no matter how much inner work you&apos;ve done.
+                {t('as-pat-q2', "You face the same kind of challenge, no matter how much inner work you've done.")}
               </div>
-              <div>Or life simply feels heavier than it should — and you cannot name why.</div>
+              <div>{t('as-pat-q3', 'Or life simply feels heavier than it should — and you cannot name why.')}</div>
             </div>
             <p className="note">
-              In those moments, it is natural to wonder:{" "}
-              <em>what is happening, why does this keep repeating, am I doing something wrong?</em>{" "}
-              Often, it isn&apos;t simply you. These experiences can reflect deeper patterns within
-              your birth chart — your natal blueprint — along with current planetary transits and
-              themes carried forward through time.
+              {t('as-pat-nt', "In those moments, it is natural to wonder: what is happening, why does this keep repeating, am I doing something wrong? Often, it isn't simply you. These experiences can reflect deeper patterns within your birth chart — your natal blueprint — along with current planetary transits and themes carried forward through time.")}
             </p>
           </div>
         </div>
@@ -128,10 +119,9 @@ export default function AstrologyPage() {
         <div className="wrap">
           <div>
             <span className="eyebrow">A Map of Your Soul&apos;s Path</span>
-            <h2>Your chart is more than a personality profile.</h2>
+            <h2>{t('as-sm-hl', 'Your chart is more than a personality profile.')}</h2>
             <p>
-              It is a map of your soul&apos;s journey. Within it lives both the struggle and the
-              medicine — your gifts and the deeper challenges you are here to transform.
+              {t('as-sm-bd', "It is a map of your soul's journey. Within it lives both the struggle and the medicine — your gifts and the deeper challenges you are here to transform.")}
             </p>
             <div className="reveals">
               <div className="reveal">
@@ -152,8 +142,7 @@ export default function AstrologyPage() {
               </div>
             </div>
             <p className="pull">
-              &ldquo;What you long for most deeply — your heart&apos;s true desires — often points
-              directly toward your soul&apos;s purpose in this lifetime.&rdquo;
+              &ldquo;{t('as-sm-pq', "What you long for most deeply — your heart's true desires — often points directly toward your soul's purpose in this lifetime.")}&rdquo;
             </p>
           </div>
           <div className="media">
@@ -173,13 +162,10 @@ export default function AstrologyPage() {
           <div>
             <span className="eyebrow">Working with the Cycles of Your Life</span>
             <h2>
-              Rather than feeling at the mercy of circumstance —<br />
-              begin to <em>work with</em> these energies.
+              {t('as-cy-hl', 'Rather than feeling at the mercy of circumstance — begin to work with these energies.')}
             </h2>
             <p style={{ marginTop: 24 }}>
-              In a reading, I help you understand both your natal chart and current transits, so
-              you can see the larger picture of what is actually unfolding. The shape and the
-              timing.
+              {t('as-cy-bd', 'In a reading, I help you understand both your natal chart and current transits, so you can see the larger picture of what is actually unfolding. The shape and the timing.')}
             </p>
           </div>
           <div className="experiences">
@@ -197,7 +183,7 @@ export default function AstrologyPage() {
           <div className="center">
             <span className="eyebrow">More Than Prediction</span>
             <h2 style={{ maxWidth: "18ch", margin: "0 auto" }}>
-              Astrology can show what is coming. More importantly, it shows you how to meet it.
+              {t('as-du-hl', 'Astrology can show what is coming. More importantly, it shows you how to meet it.')}
             </h2>
           </div>
           <div className="duality-grid">
@@ -205,16 +191,14 @@ export default function AstrologyPage() {
               <div className="smalltag">— What it offers</div>
               <h3>Foresight &amp; preparation.</h3>
               <p>
-                Understanding the upcoming cycles and themes — the long arc of a transit, the
-                windows of unusual opportunity, the seasons of necessary stillness.
+                {t('as-du-l1', 'Understanding the upcoming cycles and themes — the long arc of a transit, the windows of unusual opportunity, the seasons of necessary stillness.')}
               </p>
             </div>
             <div>
               <div className="smalltag">— What it is, more truly</div>
               <h3>A tool for empowerment.</h3>
               <p>
-                A way to meet each phase of life with awareness, creativity, and choice — so you
-                can move with your life, rather than feel controlled by it.
+                {t('as-du-r1', 'A way to meet each phase of life with awareness, creativity, and choice — so you can move with your life, rather than feel controlled by it.')}
               </p>
             </div>
           </div>
@@ -234,18 +218,12 @@ export default function AstrologyPage() {
           </div>
           <div>
             <span className="eyebrow">My Approach</span>
-            <h2>Raised in the language of the planets.</h2>
+            <h2>{t('as-ap-hl', 'Raised in the language of the planets.')}</h2>
             <p className="body">
-              Astrology has been a lifelong path of ceaseless fascination and study. Both of my
-              parents were astrologers — I was raised with the language of the planets as part of
-              everyday life. As a teenager, I disappeared into their astrology books. The passion
-              has only deepened over the decades.
+              {t('as-ap-b1', 'Astrology has been a lifelong path of ceaseless fascination and study. Both of my parents were astrologers — I was raised with the language of the planets as part of everyday life. As a teenager, I disappeared into their astrology books. The passion has only deepened over the decades.')}
             </p>
             <p className="body">
-              I studied Evolutionary Astrology through the Forrest Center for Evolutionary
-              Astrology and bring that depth of training into each session. Alongside the technical
-              understanding, I integrate my intuitive abilities — allowing each reading to be both
-              insightful and deeply personalized.
+              {t('as-ap-b2', 'I studied Evolutionary Astrology through the Forrest Center for Evolutionary Astrology and bring that depth of training into each session. Alongside the technical understanding, I integrate my intuitive abilities — allowing each reading to be both insightful and deeply personalized.')}
             </p>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 24 }}>
               <span className="chip" style={{ color: "var(--mint)", borderColor: "var(--mint)" }}>
@@ -314,8 +292,7 @@ export default function AstrologyPage() {
       <section className="closing-band">
         <div className="wrap-narrow">
           <p className="pillquote" style={{ maxWidth: "32ch", margin: "0 auto" }}>
-            &ldquo;Astrology becomes not just a way to understand your life — but a way to
-            consciously participate in it.&rdquo;
+            &ldquo;{t('as-cl-qt', 'Astrology becomes not just a way to understand your life — but a way to consciously participate in it.')}&rdquo;
           </p>
         </div>
       </section>
