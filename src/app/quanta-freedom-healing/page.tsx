@@ -37,39 +37,37 @@ export default function QFHPage() {
       <SiteHeader active="healing" />
 
       <section className="qfh-hero">
-        <div className="wrap">
-          <div>
-            <span className="eyebrow">03 · Quanta Freedom Healing™</span>
-            <h1>
-              Transform at
-              <br />
-              <em>the root —</em>
-              <br />
-              not the
-              <br />
-              surface.
-            </h1>
-            <p className="sub">
-              A quantum healing modality that gently releases stored trauma, inherited patterns,
-              and subconscious beliefs — held in the nervous system and the energy field.
-            </p>
-            <a
-              href="https://calendly.com/rhianna-rhiannagray/quanta-freedom-healing-session"
-              className="btn clay"
-            >
-              Schedule a Session <span className="arrow">→</span>
-            </a>
-          </div>
-          <div className="qfh-hero-media">
-            <Image
-              src="/images/rhianna-session.jpg"
-              alt="Rhianna in a healing session with a client by the water"
-              width={460}
-              height={614}
-              priority
-              sizes="(max-width: 880px) 92vw, 460px"
-            />
-          </div>
+        <div className="qfh-hero-text">
+          <span className="eyebrow">03 · Quanta Freedom Healing™</span>
+          <h1>
+            Transform at
+            <br />
+            <em>the root —</em>
+            <br />
+            not the
+            <br />
+            surface.
+          </h1>
+          <p className="sub">
+            A quantum healing modality that gently releases stored trauma, inherited patterns,
+            and subconscious beliefs — held in the nervous system and the energy field.
+          </p>
+          <a
+            href="https://calendly.com/rhianna-rhiannagray/quanta-freedom-healing-session"
+            className="btn clay"
+          >
+            Schedule a Session <span className="arrow">→</span>
+          </a>
+        </div>
+        <div className="qfh-hero-media">
+          <Image
+            src="/images/rhianna-session.jpg"
+            alt="Rhianna in a healing session with a client by the water"
+            fill
+            priority
+            sizes="50vw"
+            style={{ objectFit: "cover", objectPosition: "center top" }}
+          />
         </div>
       </section>
 
