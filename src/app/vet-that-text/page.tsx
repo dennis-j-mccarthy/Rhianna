@@ -201,19 +201,24 @@ const RATING_COLOR: Record<number, string> = {
 const RATING_LABEL: Record<number, string> = {
   1: 'Not acceptable', 2: 'Needs work', 3: 'Needs review', 4: 'Good', 5: 'Perfect as is',
 }
-const STORAGE_KEY = 'vtt-ratings-v1'
+const STORAGE_KEY   = 'vtt-ratings-v1'
+const REVISIONS_KEY = 'vtt-revisions-v1'
 
 export default function VetThatText() {
-  const [ratings, setRatings]             = useState<Record<string, number>>({})
-  const [activeBlock, setActiveBlock]     = useState<Block | null>(null)
-  const [editText, setEditText]           = useState('')
-  const [copied, setCopied]               = useState(false)
-  const [collapsed, setCollapsed]         = useState<Record<string, boolean>>({})
+  const [ratings,    setRatings]    = useState<Record<string, number>>({})
+  const [revisions,  setRevisions]  = useState<Record<string, string>>({})
+  const [activeBlock, setActiveBlock] = useState<Block | null>(null)
+  const [editText,   setEditText]   = useState('')
+  const [copied,     setCopied]     = useState(false)
+  const [saved,      setSaved]      = useState(false)
+  const [collapsed,  setCollapsed]  = useState<Record<string, boolean>>({})
 
   useEffect(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY)
-      if (saved) setRatings(JSON.parse(saved))
+      const r = localStorage.getItem(STORAGE_KEY)
+      if (r) setRatings(JSON.parse(r))
+      const v = localStorage.getItem(REVISIONS_KEY)
+      if (v) setRevisions(JSON.parse(v))
     } catch {}
   }, [])
 
@@ -225,8 +230,26 @@ export default function VetThatText() {
 
   const openEdit = (block: Block) => {
     setActiveBlock(block)
-    setEditText(block.text)
+    setEditText(revisions[block.id] ?? block.text)
     setCopied(false)
+    setSaved(false)
+  }
+
+  const saveRevision = () => {
+    if (!activeBlock) return
+    const next = { ...revisions, [activeBlock.id]: editText }
+    setRevisions(next)
+    try { localStorage.setItem(REVISIONS_KEY, JSON.stringify(next)) } catch {}
+    setSaved(true)
+    setTimeout(() => setSaved(false), 2000)
+  }
+
+  const clearRevision = (id: string) => {
+    const next = { ...revisions }
+    delete next[id]
+    setRevisions(next)
+    try { localStorage.setItem(REVISIONS_KEY, JSON.stringify(next)) } catch {}
+    if (activeBlock?.id === id) setEditText(activeBlock.text)
   }
 
   const copy = async () => {
@@ -235,9 +258,10 @@ export default function VetThatText() {
     setTimeout(() => setCopied(false), 2000)
   }
 
-  const allBlocks = PAGES.flatMap(p => p.sections.flatMap(s => s.blocks))
-  const rated     = Object.keys(ratings).length
-  const avg       = rated > 0
+  const allBlocks  = PAGES.flatMap(p => p.sections.flatMap(s => s.blocks))
+  const rated      = Object.keys(ratings).length
+  const revised    = Object.keys(revisions).length
+  const avg        = rated > 0
     ? (Object.values(ratings).reduce((a, b) => a + b, 0) / rated).toFixed(1)
     : '—'
 
@@ -261,9 +285,10 @@ export default function VetThatText() {
         <div style={{ display: 'flex', gap: 20, fontSize: 13, color: '#888' }}>
           <span><b style={{ color: '#111' }}>{rated}</b> / {allBlocks.length} rated</span>
           <span>Avg: <b style={{ color: '#111' }}>{avg}</b></span>
+          {revised > 0 && <span><b style={{ color: '#111' }}>{revised}</b> revised</span>}
           {rated > 0 && (
             <button
-              onClick={() => { setRatings({}); try { localStorage.removeItem(STORAGE_KEY) } catch {} }}
+              onClick={() => { setRatings({}); setRevisions({}); try { localStorage.removeItem(STORAGE_KEY); localStorage.removeItem(REVISIONS_KEY) } catch {} }}
               style={{ fontSize: 11, color: '#aaa', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline' }}
             >
               clear all
@@ -301,17 +326,25 @@ export default function VetThatText() {
                       {section.name}
                     </div>
                     {section.blocks.map(block => {
-                      const r       = ratings[block.id]
-                      const isActive = activeBlock?.id === block.id
+                      const r         = ratings[block.id]
+                      const rev       = revisions[block.id]
+                      const isActive  = activeBlock?.id === block.id
                       return (
                         <div
                           key={block.id}
                           style={{ background: isActive ? '#fffbf7' : '#fff', border: `1.5px solid ${isActive ? '#d4956a' : '#e8e8e8'}`, borderRadius: 8, padding: '12px 14px', marginBottom: 6, transition: 'border-color 0.15s' }}
                         >
                           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8, gap: 8 }}>
-                            <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#bbb', flexShrink: 0 }}>
-                              {block.label}
-                            </span>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 7, flexShrink: 0 }}>
+                              <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#bbb' }}>
+                                {block.label}
+                              </span>
+                              {rev && (
+                                <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', background: '#dbeafe', color: '#1d4ed8', borderRadius: 3, padding: '2px 5px' }}>
+                                  REVISED
+                                </span>
+                              )}
+                            </div>
                             <div style={{ display: 'flex', gap: 4, alignItems: 'center', flexShrink: 0 }}>
                               {[1,2,3,4,5].map(n => (
                                 <button
@@ -331,12 +364,29 @@ export default function VetThatText() {
                               </button>
                             </div>
                           </div>
-                          <p style={{ margin: 0, fontSize: 13.5, lineHeight: 1.65, color: '#333' }}>{block.text}</p>
-                          {r && (
-                            <div style={{ marginTop: 7, fontSize: 11, fontWeight: 600, color: RATING_COLOR[r] }}>
-                              {r === 5 ? '✓ ' : r === 1 ? '✗ ' : ''}{RATING_LABEL[r]}
+                          {rev ? (
+                            <div>
+                              <p style={{ margin: '0 0 6px', fontSize: 13.5, lineHeight: 1.65, color: '#111' }}>{rev}</p>
+                              <p style={{ margin: 0, fontSize: 12, lineHeight: 1.55, color: '#bbb', textDecoration: 'line-through' }}>{block.text}</p>
                             </div>
+                          ) : (
+                            <p style={{ margin: 0, fontSize: 13.5, lineHeight: 1.65, color: '#333' }}>{block.text}</p>
                           )}
+                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 7 }}>
+                            {r ? (
+                              <div style={{ fontSize: 11, fontWeight: 600, color: RATING_COLOR[r] }}>
+                                {r === 5 ? '✓ ' : r === 1 ? '✗ ' : ''}{RATING_LABEL[r]}
+                              </div>
+                            ) : <span />}
+                            {rev && (
+                              <button
+                                onClick={() => clearRevision(block.id)}
+                                style={{ fontSize: 10, color: '#ccc', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline' }}
+                              >
+                                clear revision
+                              </button>
+                            )}
+                          </div>
                         </div>
                       )
                     })}
@@ -383,15 +433,22 @@ export default function VetThatText() {
 
                 <div style={{ display: 'flex', gap: 6, flexShrink: 0 }}>
                   <button
-                    onClick={copy}
-                    style={{ flex: 1, height: 36, borderRadius: 6, border: 'none', background: copied ? '#22c55e' : '#111', color: '#fff', cursor: 'pointer', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', transition: 'background 0.2s' }}
+                    onClick={saveRevision}
+                    style={{ flex: 1, height: 36, borderRadius: 6, border: 'none', background: saved ? '#1d4ed8' : '#111', color: '#fff', cursor: 'pointer', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', transition: 'background 0.2s' }}
                   >
-                    {copied ? '✓ COPIED' : 'COPY REVISED'}
+                    {saved ? '✓ SAVED' : 'SAVE REVISION'}
                   </button>
                   <button
-                    onClick={() => setEditText(activeBlock.text)}
+                    onClick={copy}
+                    style={{ height: 36, padding: '0 12px', borderRadius: 6, border: '1.5px solid #e8e8e8', background: copied ? '#22c55e' : '#fff', color: copied ? '#fff' : '#888', cursor: 'pointer', fontSize: 11, fontWeight: 700, transition: 'all 0.2s' }}
+                    title="Copy to clipboard"
+                  >
+                    {copied ? '✓' : 'COPY'}
+                  </button>
+                  <button
+                    onClick={() => setEditText(revisions[activeBlock.id] ?? activeBlock.text)}
                     style={{ height: 36, padding: '0 12px', borderRadius: 6, border: '1.5px solid #e8e8e8', background: '#fff', color: '#888', cursor: 'pointer', fontSize: 11, fontWeight: 700 }}
-                    title="Reset to original"
+                    title="Reset to saved (or original)"
                   >
                     ↺
                   </button>
