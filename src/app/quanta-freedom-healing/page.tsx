@@ -60,14 +60,14 @@ export default function QFHPage() {
               Schedule a Session <span className="arrow">→</span>
             </a>
           </div>
-          <div className="seal-wrap">
+          <div className="qfh-hero-media">
             <Image
-              src="/images/qfh-seal.png"
-              alt="Certified Quanta Freedom Healing™ Practitioner seal"
+              src="/images/rhianna-session.jpg"
+              alt="Rhianna in a healing session with a client by the water"
               fill
               priority
               sizes="(max-width: 880px) 92vw, 460px"
-              style={{ objectFit: "contain" }}
+              style={{ objectFit: "cover", objectPosition: "center top" }}
             />
           </div>
         </div>
