@@ -17,6 +17,23 @@ export const metadata = {
 
 const TONES = ["violet", "clay", "sage", "mint"] as const;
 
+// Default cover images for specific essays that don't have an uploaded cover.
+// An uploaded coverImage always takes precedence over these.
+const SLUG_COVERS: Record<string, string> = {
+  "inherited-patterns-meeting-what-isn-t-quite-yours-but-lives-in-you-anyway":
+    "/images/notebook-inherited-patterns.jpg",
+  "the-forest-the-listening-and-what-twenty-five-years-of-this-work-has-taught-me":
+    "/images/notebook-forest.jpg",
+  "mercury-retrograde-again-and-why-we-miss-the-gift-each-time":
+    "/images/notebook-mercury.jpg",
+  "on-open-water-swimming-performance-scores-and-listening-to-wild-places":
+    "/images/notebook-lake.jpg",
+};
+
+function coverFor(article: { coverImage?: string | null; slug: string }): string | null {
+  return article.coverImage ?? SLUG_COVERS[article.slug] ?? null;
+}
+
 function monthYear(date: Date) {
   return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
 }
@@ -82,9 +99,9 @@ export default async function NotebookPage({
         <section className="featured">
           <div className="wrap">
             <div className="media">
-              {featured.coverImage ? (
+              {coverFor(featured) ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={featured.coverImage} alt={featured.title} />
+                <img src={coverFor(featured)!} alt={featured.title} />
               ) : (
                 <div className="tinted-fill violet">
                   <span className="icon">✦</span>
@@ -138,10 +155,10 @@ export default async function NotebookPage({
             <div className="essay-grid">
               {gridArticles.map((article, i) => (
                 <article className="essay" key={article.id}>
-                  {article.coverImage ? (
+                  {coverFor(article) ? (
                     <div className="media">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={article.coverImage} alt={article.title} />
+                      <img src={coverFor(article)!} alt={article.title} />
                     </div>
                   ) : (
                     <div className={`media tinted ${TONES[i % TONES.length]}`}>
