@@ -28,6 +28,8 @@ const SLUG_COVERS: Record<string, string> = {
     "/images/notebook-mercury.jpg",
   "on-open-water-swimming-performance-scores-and-listening-to-wild-places":
     "/images/notebook-lake.jpg",
+  "flower-essences-and-the-language-of-subtle-change":
+    "/images/notebook-flower-essences.jpg",
 };
 
 function coverFor(article: { coverImage?: string | null; slug: string }): string | null {
