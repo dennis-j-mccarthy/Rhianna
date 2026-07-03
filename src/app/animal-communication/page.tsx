@@ -45,7 +45,7 @@ export default async function AnimalPage() {
           </div>
           <div className="hero-media">
             <Image
-              src="/images/animal-hero-dog.png"
+              src="/images/animal-hero-dog.jpg"
               alt="A white golden retriever resting on a rug, gazing softly at the camera"
               fill
               priority
@@ -199,7 +199,7 @@ export default async function AnimalPage() {
             }}
           >
             <Image
-              src="/images/session-animal.png"
+              src="/images/session-animal.jpg"
               alt="Barnaby, a scruffy terrier, resting on a braided rug during a remote session"
               fill
               style={{ objectFit: "cover" }}

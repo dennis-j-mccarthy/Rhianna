@@ -60,6 +60,15 @@ export default async function NotebookPage({
             <span>Free · Always</span>
           </div>
         </div>
+        <div className="notebook-hero-media">
+          <Image
+            src="/images/notebook-hero.jpg"
+            alt="Rhianna writing by lamplight in a cozy reading room, a cup of tea beside her"
+            fill
+            priority
+            sizes="(max-width: 1100px) 92vw, 1000px"
+          />
+        </div>
       </section>
 
       <Divider />

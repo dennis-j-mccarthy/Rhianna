@@ -11,7 +11,7 @@
   --paper:        #fbf7ee;
   --ink:          #1f2a2e;
   --ink-soft:     #3a4a4f;
-  --muted:        #6b7878;
+  --muted:        #4f5c5c;
 
   --mint:         #9ec9c1;
   --mint-deep:    #6fa9a0;
@@ -1572,6 +1572,16 @@ ul.bare li::before {
   max-width: 600px; margin: 0 auto;
 }
 .notebook-hero .meta span::before { content: "✦  "; color: var(--gold); }
+.notebook-hero-media {
+  position: relative;
+  width: min(1000px, 92vw);
+  aspect-ratio: 16 / 9;
+  margin: clamp(36px, 5vw, 56px) auto 0;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+.notebook-hero-media img { object-fit: cover; object-position: center 38%; }
 
 .filter-row {
   display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
@@ -2373,6 +2383,17 @@ a.tag:hover { background: var(--ink); color: var(--cream); border-color: var(--i
   --mauve-pale: #2a1f2c;
   --clay-pale: #2d2018;
   --violet-pale: #221d2f;
+  /* lighten the accent-text tokens (used only as text, never as button bg)
+     so accent headings, tags, and metas stay legible on the dark gradient */
+  --violet-deep: #c3b1dd;
+  --sage-deep: #d9b2d0;
+  --mauve-deep: #d9b2d0;
+  --mint-deep: #8fc7bd;
+  --gold: #d8b660;
+  /* clay-deep doubles as a button background, but button text is --cream
+     (dark in dark mode), so a lighter clay keeps buttons high-contrast while
+     making clay accent text/tags legible on the dark gradient */
+  --clay-deep: #e3aa82;
 }
 :root[data-theme="dark"] body {
   background: linear-gradient(

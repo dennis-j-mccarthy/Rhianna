@@ -214,18 +214,18 @@ export default async function Home() {
             title="Session · Rhianna Gray"
             hostTile={{
               kind: "image",
-              src: "/images/rhianna-on-zoom.png",
+              src: "/images/rhianna-on-zoom.jpg",
               alt: "Rhianna in a remote Zoom session from her home studio",
             }}
             rightTiles={[
               {
                 kind: "image",
-                src: "/images/session-client.png",
+                src: "/images/session-client.jpg",
                 alt: "A client joining the session from home",
               },
               {
                 kind: "image",
-                src: "/images/session-animal.png",
+                src: "/images/session-animal.jpg",
                 alt: "An animal companion during a remote session",
               },
             ]}
