@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
-import ZoomMock from "@/components/ZoomMock";
 import { getAllTextBlocks } from "@/lib/text";
 
 export const metadata = {
@@ -46,8 +45,8 @@ export default async function AnimalPage() {
           </div>
           <div className="hero-media">
             <Image
-              src="/images/mercy-columbines.jpg"
-              alt="Mercy, a dog, in a meadow of purple columbines"
+              src="/images/animal-hero-dog.png"
+              alt="A white golden retriever resting on a rug, gazing softly at the camera"
               fill
               priority
               sizes="(max-width: 880px) 92vw, 50vw"
@@ -190,28 +189,23 @@ export default async function AnimalPage() {
               {t('ac-ap-b2', "I approach each communication with openness and care, allowing your animal's voice to come forward in a way that feels clear and supportive. The work itself is energetic, so your animal does not need to be on camera. Most simply rest nearby while we speak.")}
             </p>
           </div>
-          <ZoomMock
-            title="Animal Session · Rhianna & Mercy"
-            hostTile={{
-              kind: "image",
-              src: "/images/mercy-and-rhianna.jpg",
-              alt: "Rhianna with Mercy",
-              nameplate: "Rhianna · listening",
+          <div
+            style={{
+              position: "relative",
+              aspectRatio: "3 / 2",
+              borderRadius: 18,
+              overflow: "hidden",
+              boxShadow: "0 24px 60px rgba(0,0,0,.35)",
             }}
-            rightTiles={[
-              { kind: "placeholder", text: <>[ Client tile ]<br />on screen</> },
-              { kind: "placeholder", text: <>[ Animal at home ]<br />resting nearby</> },
-            ]}
-            controls={
-              <>
-                <span>
-                  <span className="pip" /> Recording
-                </span>
-                <span>· Mic on</span>
-                <span>· 47:12</span>
-              </>
-            }
-          />
+          >
+            <Image
+              src="/images/session-animal.png"
+              alt="Barnaby, a scruffy terrier, resting on a braided rug during a remote session"
+              fill
+              style={{ objectFit: "cover" }}
+              sizes="(max-width: 880px) 92vw, 55vw"
+            />
+          </div>
         </div>
       </section>
 

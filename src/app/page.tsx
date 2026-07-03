@@ -166,7 +166,7 @@ export default async function Home() {
                 src="/images/qfh-seal.png"
                 alt="Quanta Freedom Healing certified practitioner seal"
                 fill
-                style={{ objectFit: "contain", padding: 40, mixBlendMode: "multiply" }}
+                style={{ objectFit: "contain", padding: 40 }}
                 sizes="(max-width: 880px) 92vw, 50vw"
               />
             </div>
@@ -213,16 +213,21 @@ export default async function Home() {
           <ZoomMock
             title="Session · Rhianna Gray"
             hostTile={{
-              kind: "placeholder",
-              text: (
-                <>
-                  [ Rhianna on Zoom ]<br />remote session<br />— image placeholder —
-                </>
-              ),
+              kind: "image",
+              src: "/images/rhianna-on-zoom.png",
+              alt: "Rhianna in a remote Zoom session from her home studio",
             }}
             rightTiles={[
-              { kind: "placeholder", text: <>[ Client tile ]<br />placeholder</> },
-              { kind: "placeholder", text: <>[ Animal / chart ]<br />placeholder</> },
+              {
+                kind: "image",
+                src: "/images/session-client.png",
+                alt: "A client joining the session from home",
+              },
+              {
+                kind: "image",
+                src: "/images/session-animal.png",
+                alt: "An animal companion during a remote session",
+              },
             ]}
             controls={
               <>
