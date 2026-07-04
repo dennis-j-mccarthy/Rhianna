@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { getAllTextBlocks } from "@/lib/text";
@@ -58,9 +57,12 @@ export default async function AstrologyPage() {
               <p className="sub">
                 {t('as-hero-sb', "Evolutionary astrology trained at the Forrest Center. Not prediction. A way to consciously participate in the unfolding of your own life.")}
               </p>
-              <Link href="/contact" className="btn clay">
+              <a
+                href="https://calendly.com/rhianna-rhiannagray/astrology-reading"
+                className="btn clay"
+              >
                 Schedule a Reading <span className="arrow">→</span>
-              </Link>
+              </a>
             </div>
             <div className="chart-wheel">
               <div className="ring" />
@@ -277,9 +279,12 @@ export default async function AstrologyPage() {
               </ul>
             </div>
             <div className="actions">
-              <Link href="/contact" className="btn">
+              <a
+                href="https://calendly.com/rhianna-rhiannagray/astrology-reading"
+                className="btn"
+              >
                 Schedule a Reading <span className="arrow">→</span>
-              </Link>
+              </a>
               <a href="mailto:Rhianna@rhiannagray.com" className="btn ghost">
                 Email Rhianna
               </a>
