@@ -88,7 +88,7 @@ export default async function ContactPage() {
               </div>
               <div className="price">$250</div>
               <a
-                href="mailto:Rhianna@rhiannagray.com?subject=Astrology%20Reading"
+                href="https://calendly.com/rhianna-rhiannagray/astrology-reading"
                 className="book"
               >
                 Book Reading →
