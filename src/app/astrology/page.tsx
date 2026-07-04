@@ -205,8 +205,8 @@ export default async function AstrologyPage() {
         <div className="wrap">
           <div className="portrait">
             <Image
-              src="/images/rhianna-headshot.jpg"
-              alt="Rhianna Gray portrait"
+              src="/images/mercury.jpg"
+              alt="The planet Mercury against a starfield"
               fill
               sizes="(max-width: 880px) 92vw, 40vw"
             />
