@@ -1,13 +1,28 @@
 "use client";
 
+const TO = "rhianna@rhiannagray.com";
+
 export default function ContactForm() {
   return (
     <form
       className="contact-form"
       onSubmit={(e) => {
         e.preventDefault();
-        alert("Thank you. Rhianna will reply within a few days.");
-        (e.currentTarget as HTMLFormElement).reset();
+        const form = e.currentTarget as HTMLFormElement;
+        const name = (form.elements.namedItem("name") as HTMLInputElement).value.trim();
+        const email = (form.elements.namedItem("email") as HTMLInputElement).value.trim();
+        const service = (form.elements.namedItem("service") as HTMLSelectElement).value;
+        const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim();
+
+        const subject = `New inquiry — ${service}`;
+        const body =
+          `Name: ${name}\n` +
+          `Email: ${email}\n` +
+          `Interested in: ${service}\n\n` +
+          `${message}\n`;
+
+        window.location.href =
+          `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       }}
     >
       <div className="row">
@@ -39,7 +54,7 @@ export default function ContactForm() {
         />
       </div>
       <div className="submit-row">
-        <p className="note">Everything you write stays between us.</p>
+        <p className="note">Opens your email app, addressed to Rhianna.</p>
         <button type="submit">Send Note →</button>
       </div>
     </form>

@@ -70,14 +70,7 @@ export default async function AstrologyPage() {
               <div className="ring r3" />
               <div className="ring r4" />
               <HouseLines />
-              <div className="center-img">
-                <Image
-                  src="/images/rhianna-headshot.jpg"
-                  alt="Rhianna Gray, headshot at the water"
-                  fill
-                  sizes="(max-width: 880px) 60vw, 250px"
-                />
-              </div>
+              <div className="center-orb" aria-hidden="true" />
               <div className="zodiac-orbit">
                 {zodiacGlyphs.map((g) => (
                   <div

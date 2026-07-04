@@ -879,6 +879,23 @@ ul.bare li::before {
   animation: astro-glow 5s ease-in-out infinite;
 }
 .chart-wheel .center-img img { width: 100%; height: 100%; object-fit: cover; }
+.chart-wheel .center-orb {
+  position: absolute;
+  inset: 175px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 62% 58%, rgba(108,92,120,.38) 0 5.5%, transparent 6.5%),
+    radial-gradient(circle at 41% 70%, rgba(108,92,120,.32) 0 4%, transparent 5%),
+    radial-gradient(circle at 56% 34%, rgba(108,92,120,.26) 0 3%, transparent 4%),
+    radial-gradient(circle at 70% 40%, rgba(108,92,120,.22) 0 2.4%, transparent 3.2%),
+    radial-gradient(circle at 38% 32%, #fbf7ee 0%, #ece1d2 32%, #cdb9c6 64%, #9c8bab 100%);
+  box-shadow:
+    inset -14px -18px 42px rgba(74,62,88,.55),
+    inset 10px 12px 26px rgba(255,255,255,.5),
+    0 0 0 2px rgba(245,239,228,.3),
+    0 0 90px rgba(158,201,193,.45);
+  animation: astro-glow 5s ease-in-out infinite;
+}
 .zodiac-orbit { position: absolute; inset: 0; animation: spin-ccw 120s linear infinite; }
 .glyph-inner  { display: inline-block; animation: spin-cw 120s linear infinite; }
 .astro-hero .stars { animation: star-shimmer 6s ease-in-out infinite; }

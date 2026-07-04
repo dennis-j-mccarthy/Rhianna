@@ -5,7 +5,7 @@ import ThemeToggle from "./ThemeToggle";
 type NavKey = "home" | "astrology" | "animal" | "healing" | "notebook" | "contact";
 
 const navItems: { key: NavKey; href: string; label: string }[] = [
-  { key: "healing", href: "/quanta-freedom-healing", label: "Healing" },
+  { key: "healing", href: "/quanta-freedom-healing", label: "Quanta Freedom Healing™" },
   { key: "astrology", href: "/astrology", label: "Astrology" },
   { key: "animal", href: "/animal-communication", label: "Animal" },
   { key: "notebook", href: "/notebook", label: "Notebook" },

@@ -36,7 +36,7 @@ const faqs = [
   },
   {
     q: "Will I receive a recording?",
-    a: "Astrology sessions are recorded and sent to you afterward. QFH and animal sessions are not typically recorded — the work is more present-moment — but notes can be shared on request.",
+    a: "Astrology and Animal Communication sessions are recorded and sent to you afterward. Quanta Freedom Healing sessions are not typically recorded but can be recorded upon request at the start of a session.",
   },
 ];
 
@@ -187,7 +187,7 @@ export default async function ContactPage() {
         <div className="wrap">
           <div>
             <span className="eyebrow">Before You Book</span>
-            <h2>A few questions, gently answered.</h2>
+            <h2>Frequently Asked Questions</h2>
           </div>
           <div className="accordion-list">
             {faqs.map((f, i) => (
@@ -205,7 +205,6 @@ export default async function ContactPage() {
         <div className="wrap">
           <div>
             <span className="eyebrow">Remote · Worldwide</span>
-            <h2>Wherever you are, the field is here.</h2>
             <p>
               Sessions are held via Zoom, the same way you&apos;d join a meeting with a friend.
               You&apos;ll receive a private link before our time. Settle into a quiet room with
@@ -218,24 +217,32 @@ export default async function ContactPage() {
             </p>
           </div>
           <ZoomMock
-            title="Waiting room · Rhianna will admit you"
+            title="Session · Rhianna Gray"
             hostTile={{
               kind: "image",
-              src: "/images/rhianna-headshot.jpg",
-              alt: "Rhianna ready for session",
-              nameplate: "Rhianna · host",
+              src: "/images/rhianna-on-zoom.jpg",
+              alt: "Rhianna in a remote Zoom session from her home studio",
             }}
             rightTiles={[
-              { kind: "placeholder", text: <>[ You ]<br />arriving</> },
-              { kind: "placeholder", text: <>[ Your animal ]<br />nearby</> },
+              {
+                kind: "image",
+                src: "/images/session-client.jpg",
+                alt: "A client joining the session from home",
+              },
+              {
+                kind: "image",
+                src: "/images/session-animal.jpg",
+                alt: "An animal companion during a remote session",
+              },
             ]}
             controls={
               <>
                 <span>
-                  <span className="pip" /> Ready to begin
+                  <span className="pip" /> Recording
                 </span>
-                <span>· End-to-end encrypted</span>
-                <span>· Private link</span>
+                <span>· Mic on</span>
+                <span>· Video on</span>
+                <span>· 01:24:32</span>
               </>
             }
           />
