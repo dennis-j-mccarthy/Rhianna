@@ -266,7 +266,13 @@ export default async function QFHPage() {
                 href="https://calendly.com/rhianna-rhiannagray/quanta-freedom-healing-session"
                 className="btn"
               >
-                Schedule Here <span className="arrow">→</span>
+                Book Single Session <span className="arrow">→</span>
+              </a>
+              <a
+                href="https://calendly.com/rhianna-rhiannagray/new-meeting"
+                className="btn"
+              >
+                Book 3-Session Series <span className="arrow">→</span>
               </a>
               <a href="mailto:Rhianna@rhiannagray.com" className="btn ghost">
                 Email Rhianna

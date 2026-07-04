@@ -133,12 +133,20 @@ export default async function ContactPage() {
                 <div>$600 for three</div>
               </div>
               <div className="price">$250 · $600</div>
-              <a
-                href="https://calendly.com/rhianna-rhiannagray/quanta-freedom-healing-session"
-                className="book"
-              >
-                Book Healing →
-              </a>
+              <div className="book-actions">
+                <a
+                  href="https://calendly.com/rhianna-rhiannagray/quanta-freedom-healing-session"
+                  className="book"
+                >
+                  Book Single Session →
+                </a>
+                <a
+                  href="https://calendly.com/rhianna-rhiannagray/new-meeting"
+                  className="book ghost"
+                >
+                  Book 3-Session Series
+                </a>
+              </div>
             </article>
           </div>
         </div>
