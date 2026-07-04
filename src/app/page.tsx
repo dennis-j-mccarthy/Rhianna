@@ -4,6 +4,7 @@ import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import Divider from "@/components/Divider";
 import ZoomMock from "@/components/ZoomMock";
+import Testimonials from "@/components/Testimonials";
 import { getAllTextBlocks } from "@/lib/text";
 
 export default async function Home() {
@@ -243,16 +244,13 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ========== TESTIMONIAL ========== */}
+      {/* ========== TESTIMONIALS ========== */}
       <section className="testimonial-section">
         <div className="wrap">
-          <div className="testimonial-card">
-            <div className="quote-mark">&ldquo;</div>
-            <blockquote>
-              {t('h-tes-qt', 'Challenges I had been carrying for over twenty years were resolved in a single session. Her intuitive clarity, professionalism, and heart-centered presence make every session deeply transformative.')}
-            </blockquote>
-            <cite>— Teresa &nbsp; · &nbsp; Client since 2022</cite>
-          </div>
+          <span className="eyebrow" style={{ display: "block", textAlign: "center", marginBottom: 8 }}>
+            In Their Words
+          </span>
+          <Testimonials />
         </div>
       </section>
 
