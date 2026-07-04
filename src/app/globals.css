@@ -1851,6 +1851,13 @@ ul.bare li::before {
   text-decoration: none;
 }
 .booking-card .book:hover { background: var(--clay-deep); border-color: var(--clay-deep); color: var(--cream); }
+.booking-card .book-actions {
+  margin-top: auto;
+  display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+}
+.booking-card .book-actions .book { margin-top: 0; }
+.booking-card .book.ghost { background: transparent; color: var(--ink); }
+.booking-card .book.ghost:hover { background: var(--ink); border-color: var(--ink); color: var(--cream); }
 @media (max-width: 880px) { .booking-grid { grid-template-columns: 1fr; } }
 
 .contact-form-section {

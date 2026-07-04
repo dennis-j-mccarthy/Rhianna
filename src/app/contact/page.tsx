@@ -106,12 +106,20 @@ export default async function ContactPage() {
                 <div>Sliding scale available</div>
               </div>
               <div className="price">$200 · $100</div>
-              <a
-                href="https://calendly.com/rhianna-rhiannagray/animal-communication-session-1-hour"
-                className="book"
-              >
-                Book Session →
-              </a>
+              <div className="book-actions">
+                <a
+                  href="https://calendly.com/rhianna-rhiannagray/animal-communication-session-1-hour"
+                  className="book"
+                >
+                  Book One Hour →
+                </a>
+                <a
+                  href="https://calendly.com/rhianna-rhiannagray/animal-communication-session-30-minute-followup"
+                  className="book ghost"
+                >
+                  Book Follow-Up
+                </a>
+              </div>
             </article>
 
             <article className="booking-card qfh">
