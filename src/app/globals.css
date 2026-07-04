@@ -747,6 +747,18 @@ ul.bare li::before {
   color: var(--ink); font-style: normal;
 }
 
+/* ---- Photo moment band ---- */
+.photo-moment { padding-block: clamp(24px, 5vw, 64px); display: flex; justify-content: center; }
+.photo-moment figure { margin: 0; width: 100%; display: flex; flex-direction: column; align-items: center; }
+.photo-moment .pm-media {
+  position: relative; width: 92vw;
+  border-radius: 18px; overflow: hidden; box-shadow: var(--shadow-soft);
+}
+.photo-moment figcaption {
+  font-family: var(--serif); font-style: italic; color: var(--muted);
+  margin-top: 14px; font-size: 16px; text-align: center;
+}
+
 /* ---- Testimonials slider ---- */
 .testimonial-slider { max-width: 860px; margin: 0 auto; }
 .testimonial-slider .testimonial-card { max-width: 860px; }

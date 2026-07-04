@@ -5,6 +5,7 @@ import SiteFooter from "@/components/SiteFooter";
 import Divider from "@/components/Divider";
 import ZoomMock from "@/components/ZoomMock";
 import Testimonials from "@/components/Testimonials";
+import PhotoMoment from "@/components/PhotoMoment";
 import { getAllTextBlocks } from "@/lib/text";
 
 export default async function Home() {
@@ -253,6 +254,15 @@ export default async function Home() {
           <Testimonials />
         </div>
       </section>
+
+      <PhotoMoment
+        src="/images/blackberry-blossom.jpg"
+        alt="A pale blackberry blossom opening among green leaves"
+        caption="Blackberry blossom — the raw material of a flower essence."
+        maxWidth={520}
+        aspectRatio="1 / 1"
+        objectPosition="42% center"
+      />
 
       {/* ========== THRESHOLD TEASER ========== */}
       <section className="notebook-band">

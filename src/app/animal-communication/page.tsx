@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import PhotoMoment from "@/components/PhotoMoment";
 import { getAllTextBlocks } from "@/lib/text";
 
 export const metadata = {
@@ -68,6 +69,15 @@ export default async function AnimalPage() {
           </div>
         </div>
       </section>
+
+      <PhotoMoment
+        src="/images/rhianna-mercy-redwoods.jpg"
+        alt="Rhianna and her dog Mercy on a fern-lined redwood trail"
+        caption="Rhianna and Mercy in the redwoods."
+        maxWidth={560}
+        aspectRatio="1 / 1"
+        objectPosition="center 40%"
+      />
 
       <section className="listening">
         <div className="wrap">

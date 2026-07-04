@@ -1,6 +1,7 @@
 import Image from "next/image";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import PhotoMoment from "@/components/PhotoMoment";
 import { getAllTextBlocks } from "@/lib/text";
 
 export const metadata = {
@@ -130,6 +131,15 @@ export default async function QFHPage() {
           </div>
         </div>
       </section>
+
+      <PhotoMoment
+        src="/images/healing-redwoods.jpg"
+        alt="A sunlit path winding through towering old-growth redwoods"
+        caption="The work goes as deep as the roots."
+        maxWidth={440}
+        aspectRatio="9 / 16"
+        objectPosition="center"
+      />
 
       <section className="spectrum">
         <div className="wrap">
