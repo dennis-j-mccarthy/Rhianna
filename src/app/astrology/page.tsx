@@ -203,7 +203,7 @@ export default async function AstrologyPage() {
       {/* APPROACH */}
       <section className="approach">
         <div className="wrap">
-          <div className="portrait">
+          <div className="portrait planet">
             <Image
               src="/images/mercury.jpg"
               alt="The planet Mercury against a starfield"

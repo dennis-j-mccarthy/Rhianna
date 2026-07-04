@@ -1109,6 +1109,54 @@ ul.bare li::before {
 }
 .approach .portrait img { width: 100%; height: 100%; object-fit: cover; }
 .approach .body { color: rgba(245,239,228,.82); }
+
+/* Planet treatment — a glowing sphere floating in the section, not an arch */
+.approach .portrait.planet {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  max-width: 440px;
+  justify-self: center;
+  border-radius: 50%;
+  overflow: visible;
+  box-shadow: none;
+  animation: planet-float 10s ease-in-out infinite;
+}
+.approach .portrait.planet img {
+  border-radius: 50%;
+  object-position: 44% 47%;
+  box-shadow:
+    inset -24px -28px 66px rgba(0,0,0,.7),
+    inset 14px 16px 44px rgba(255,255,255,.08),
+    0 0 0 1px rgba(245,239,228,.12),
+    0 0 70px rgba(122,106,131,.55),
+    0 0 150px rgba(158,201,193,.3);
+}
+/* soft atmospheric halo behind the planet */
+.approach .portrait.planet::after {
+  content: "";
+  position: absolute; inset: -18%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(122,106,131,.4) 0%, transparent 62%);
+  z-index: -1;
+  pointer-events: none;
+}
+/* tilted orbital ring encircling the planet */
+.approach .portrait.planet::before {
+  content: "";
+  position: absolute; inset: -13% -9%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(245,239,228,.28);
+  box-shadow: 0 0 18px rgba(158,201,193,.25);
+  transform: rotate(-20deg) scaleY(.32);
+  pointer-events: none;
+}
+@keyframes planet-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .approach .portrait.planet { animation: none; }
+}
 @media (max-width: 880px) { .approach .wrap { grid-template-columns: 1fr; } }
 
 .pricing-section { padding-block: clamp(70px, 9vw, 120px); background: var(--paper); }
