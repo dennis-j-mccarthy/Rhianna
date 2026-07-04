@@ -30,6 +30,8 @@ const SLUG_COVERS: Record<string, string> = {
     "/images/notebook-lake.jpg",
   "flower-essences-and-the-language-of-subtle-change":
     "/images/notebook-flower-essences.jpg",
+  "why-the-body-refuses-to-budge-until-something-deeper-is-heard":
+    "/images/notebook-body-path.jpg",
 };
 
 function coverFor(article: { coverImage?: string | null; slug: string }): string | null {
