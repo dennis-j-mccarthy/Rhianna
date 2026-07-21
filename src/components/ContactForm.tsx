@@ -1,6 +1,6 @@
 "use client";
 
-const TO = "rhianna@rhiannagray.com";
+const TO = "dennisjmccarthy@gmail.com";
 
 export default function ContactForm() {
   return (
