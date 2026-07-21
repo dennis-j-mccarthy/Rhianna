@@ -1,26 +1,30 @@
 "use client";
 
-import { useActionState } from "react";
-import { submitContact, type ContactState } from "@/app/contact/actions";
+const TO = "rhianna@rhiannagray.com";
 
 export default function ContactForm() {
-  const [state, formAction, pending] = useActionState<ContactState, FormData>(
-    submitContact,
-    null,
-  );
-
-  if (state?.ok) {
-    return (
-      <div className="contact-form" role="status" aria-live="polite">
-        <p className="note" style={{ fontSize: 16 }}>
-          Thank you — your note is on its way to Rhianna. She’ll be in touch soon.
-        </p>
-      </div>
-    );
-  }
-
   return (
-    <form className="contact-form" action={formAction}>
+    <form
+      className="contact-form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        const form = e.currentTarget as HTMLFormElement;
+        const name = (form.elements.namedItem("name") as HTMLInputElement).value.trim();
+        const email = (form.elements.namedItem("email") as HTMLInputElement).value.trim();
+        const service = (form.elements.namedItem("service") as HTMLSelectElement).value;
+        const message = (form.elements.namedItem("message") as HTMLTextAreaElement).value.trim();
+
+        const subject = `New inquiry — ${service}`;
+        const body =
+          `Name: ${name}\n` +
+          `Email: ${email}\n` +
+          `Interested in: ${service}\n\n` +
+          `${message}\n`;
+
+        window.location.href =
+          `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      }}
+    >
       <div className="row">
         <div>
           <label htmlFor="name">Your Name</label>
@@ -49,18 +53,9 @@ export default function ContactForm() {
           required
         />
       </div>
-      {state?.error ? (
-        <p className="note" role="alert" style={{ color: "crimson" }}>
-          {state.error}
-        </p>
-      ) : null}
       <div className="submit-row">
-        <p className="note">
-          {pending ? "Sending…" : "Sends straight to Rhianna’s inbox."}
-        </p>
-        <button type="submit" disabled={pending}>
-          {pending ? "Sending…" : "Send Note →"}
-        </button>
+        <p className="note">Opens your email app, addressed to Rhianna.</p>
+        <button type="submit">Send Note →</button>
       </div>
     </form>
   );
